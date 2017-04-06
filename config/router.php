@@ -1,6 +1,11 @@
 <?php
 
 return [
-    'resources' => [],
-    'apps'      => [],
+    'apps' => [
+        'condo' => [
+            'host' => [
+                '(.*)',
+            ],
+        ],
+    ],
 ];
