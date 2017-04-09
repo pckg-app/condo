@@ -1,8 +1,14 @@
 <?php
 
 use Condo\Controller\Condo as CondoController;
+use Condo\Repository\Provider\Repository;
 use Pckg\Framework\Provider;
+use Pckg\Framework\Provider\Framework;
+use Pckg\Framework\Provider\Frontend;
+use Pckg\Generic\Provider\GenericAssets;
 use Pckg\Generic\Provider\GenericPaths;
+use Pckg\Manager\Middleware\RegisterCoreAssets;
+use Pckg\Manager\Provider\Manager;
 
 class Condo extends Provider
 {
@@ -17,7 +23,19 @@ class Condo extends Provider
     public function providers()
     {
         return [
+            Repository::class,
             GenericPaths::class,
+            GenericAssets::class,
+            Framework::class,
+            Manager::class,
+            Frontend::class,
+        ];
+    }
+
+    public function middlewares()
+    {
+        return [
+            RegisterCoreAssets::class,
         ];
     }
 

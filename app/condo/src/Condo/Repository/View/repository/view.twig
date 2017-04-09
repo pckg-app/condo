@@ -1,0 +1,24 @@
+{% extends 'Pckg/Generic/View/frontend.twig' %}
+
+{% block content %}
+    <condo-repository-view></condo-repository-view>
+{% endblock %}
+
+{% block nonvue %}
+    <script type="text/x-template" id="condo-repository-view-template">
+        <div class="condo-repository-add-component">
+            <h2>${ repository.name }</h2>
+        </div>
+    </script>
+    <script>
+        Vue.component('condo-repository-view', {
+            template: '#condo-repository-view-template',
+            mixins: [pckgDelimiters],
+            data: function () {
+                return {
+                    repository: {{ repository.toJSON() | raw }},
+                };
+            }
+        });
+    </script>
+{% endblock %}

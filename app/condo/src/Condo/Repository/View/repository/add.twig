@@ -1,0 +1,60 @@
+{% extends 'Pckg/Generic/View/frontend.twig' %}
+
+{% block content %}
+    <condo-repository-add></condo-repository-add>
+{% endblock %}
+
+{% block nonvue %}
+    <script type="text/x-template" id="condo-repository-add-template">
+        <div class="condo-repository-add-component">
+            <h2>Add new repository</h2>
+            <p>Import repository from bitbucket or github. We'll crawl it and then you'll be able to create your first
+                release.</p>
+
+            <template v-if="!state && !repository.full_name">
+                {{ addRepositoryForm.setAttribute('@click.prevent', 'submitAddRepositoryForm') | raw }}
+            </template>
+            <template v-else-if="!state && repository.full_name">
+                <h3>Import ${ repository.full_name } ?</h3>
+                <button type="button" class="btn btn-success" @click.prevent="importRepository">Of course!</button>
+                <button type="button" class="btn btn-danger" @click.prevent="this.repository = {}">Sorry, no</button>
+            </template>
+            <template v-else-if="state == 'importing'">
+                <h3>Importing ${ repository.full_name }</h3>
+                <p>This may take a few seconds ...</p>
+            </template>
+            <template v-else-if="state == 'imported'">
+                <h3>${ repository.full_name } imported</h3>
+                <p>Redirecting ...</p>
+            </template>
+        </div>
+    </script>
+    <script>
+        Vue.component('condo-repository-add', {
+            template: '#condo-repository-add-template',
+            mixins: [pckgDelimiters],
+            data: function () {
+                return {
+                    repository: {},
+                    state: null
+                };
+            },
+            methods: {
+                submitAddRepositoryForm: function () {
+                    var $form = $(this.$el).find('form');
+
+                    http.form($form, function (data) {
+                        this.repository = data.repository;
+                    }.bind(this));
+                },
+                importRepository: function () {
+                    this.state = 'importing';
+                    http.post('{{ url('condo.repository.import') }}', {url: this.repository.links.html.href}, function (data) {
+                        this.state = 'imported';
+                        http.redirect(data.redirect);
+                    }.bind(this));
+                }
+            }
+        });
+    </script>
+{% endblock %}
