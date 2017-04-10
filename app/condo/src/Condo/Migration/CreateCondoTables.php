@@ -19,8 +19,10 @@ class CreateCondoTables extends Migration
         $projects->varchar('repository');
 
         $branches = $this->table('branches');
+        $branches->integer('repository_id')->references('repositories');
         $branches->varchar('branch');
         $branches->varchar('description');
+        $branches->varchar('status_id');
 
         $releases = $this->table('releases');
         $releases->title();

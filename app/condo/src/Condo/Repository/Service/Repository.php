@@ -14,6 +14,9 @@ class Repository
         return $this;
     }
 
+    /**
+     * @return Bitbucket|null
+     */
     public function getRepository()
     {
         if (strpos($this->url, 'bitbucket')) {

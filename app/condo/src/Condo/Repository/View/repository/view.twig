@@ -8,6 +8,23 @@
     <script type="text/x-template" id="condo-repository-view-template">
         <div class="condo-repository-add-component">
             <h2>${ repository.name }</h2>
+            <table class="table table-condensed table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Branch</th>
+                    <th>Author</th>
+                    <th>Commit</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="branch in branches">
+                    <td>${ branch.branch }</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </script>
     <script>
@@ -17,6 +34,7 @@
             data: function () {
                 return {
                     repository: {{ repository.toJSON() | raw }},
+                    branches: {{ branches | json_encode | raw }}
                 };
             }
         });

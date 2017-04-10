@@ -41,9 +41,14 @@ class Repository
                                                           ['repository' => $repositoryRecord]));
     }
 
-    public function getViewAction(RepositoryRecord $repository)
+    public function getViewAction(RepositoryRecord $repository, RepositoryService $repositoryService)
     {
-        return view('Condo\Repository:repository\view', ['repository' => $repository]);
+        $repository->syncBranchesFromRepository();
+
+        return view('Condo\Repository:repository\view', [
+            'repository' => $repository,
+            'branches'   => $repository->branches,
+        ]);
     }
 
 }
