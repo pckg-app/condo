@@ -30,8 +30,11 @@ class Repository extends Provider
                            'namePrefix' => 'condo.branch',
                        ]))->routes(
                 [
-                    '.sync' => route('/[branch]/sync', 'sync')
+                    '.sync'              => route('/[branch]/sync', 'sync')
                         ->resolvers(['branch' => BranchResolver::class]),
+                    '.createPullRequest' => route('/[branch]/createPullRequest', 'createPullRequest')
+                        ->resolvers(['branch' => BranchResolver::class]),
+
                 ]),
         ];
     }

@@ -1,7 +1,11 @@
 <?php namespace Condo\Repository\Service\Repository\Handler;
 
 use Bitbucket\API\Authentication\Basic;
+use Bitbucket\API\Repositories\PullRequests;
+use Bitbucket\API\Repositories\Repository;
+use Condo\Repository\Record\Branch;
 use Exception;
+use Pckg\Framework\Request;
 
 class Bitbucket
 {
@@ -23,7 +27,7 @@ class Bitbucket
 
     public function doSomething()
     {
-        $repository = (new \Bitbucket\API\Repositories\Repository());
+        $repository = (new Repository());
         $repository->setCredentials($this->getAuth());
 
         $repository = $repository->get($this->vendor, $this->package);
@@ -38,11 +42,35 @@ class Bitbucket
 
     public function getBranches()
     {
-        $repository = (new \Bitbucket\API\Repositories\Repository());
+        $repository = (new Repository());
         $repository->setCredentials($this->getAuth());
 
         $repository = $repository->branches($this->vendor, $this->package);
         $response = json_decode($repository->getContent());
+
+        return $response;
+    }
+
+    public function createPullRequest(Branch $branch, Request $request)
+    {
+        $pullRequests = (new PullRequests());
+        $pullRequests->setCredentials($this->getAuth());
+
+        $pullRequest = $pullRequests->create($this->vendor, $this->package, [
+            'title'       => $request->post('title'),
+            'comment'     => $request->post('comment') . $request->post('reviewers'),
+            'source'      => [
+                'branch' => [
+                    'name' => $branch->branch,
+                ],
+            ],
+            'destination' => [
+                'branch' => [
+                    'name' => 'develop',
+                ],
+            ],
+        ]);
+        $response = json_decode($pullRequest->getContent());
 
         return $response;
     }

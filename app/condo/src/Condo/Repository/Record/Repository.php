@@ -24,6 +24,7 @@ class Repository extends Record
     public function syncBranchesFromRepository()
     {
         $branches = $this->getRepositoryHandler()->getBranches();
+        dd($branches);
 
         $oldBranches = (new Branches())->where('repository_id', $this->id)
                                        ->where('branch', array_keys((array)$branches))

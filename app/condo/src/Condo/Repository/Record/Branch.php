@@ -8,8 +8,18 @@ class Branch extends Record
 
     protected $entity = Branches::class;
 
+    public function pullRequest()
+    {
+        $handler = $this->repository->getRepositoryHandler();
+
+        return $handler->createPullRequest();
+    }
+
     public function syncBranch()
     {
+        //$this->repository->syncBranchesFromRepository();
+        //dd("ok?");
+
         if ($this->status_id != 'new') {
             return;
         }
@@ -29,7 +39,8 @@ class Branch extends Record
         if (!is_dir($dir . 'app')) {
             $commands = [
                 'git init .',
-                'git remote add origin https://schtr4jh:none@bitbucket.org/gnp/derive.git',
+                'git remote add origin https://' . config('pckg.bitbucket.auth.user') . ':'
+                . config('pckg.bitbucket.auth.pass') . '@bitbucket.org/gnp/derive.git',
                 'git fetch --all',
                 'git checkout master',
                 'git pull --ff',

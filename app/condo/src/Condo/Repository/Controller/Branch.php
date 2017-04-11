@@ -12,4 +12,13 @@ class Branch
         return response()->respondWithSuccess(['branch' => $branch]);
     }
 
+    public function postCreatePullRequestAction(BranchRecord $branch)
+    {
+        $pullRequest = $branch->repository->getRepositoryHandler()->createPullRequest($branch, request());
+
+        $branch->setAndSave(['pull_request' => $pullRequest->links->html->href]);
+
+        return response()->respondWithSuccess(['pullRequest' => $pullRequest]);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 use Condo\Repository\Dataset\Repositories as RepositoriesDataset;
 use Condo\Repository\Form\AddRepository;
+use Condo\Repository\Form\CreatePullRequest;
 use Condo\Repository\Record\Repository as RepositoryRecord;
 use Condo\Repository\Service\Repository as RepositoryService;
 
@@ -43,13 +44,15 @@ class Repository
     }
 
     public function getViewAction(
-        RepositoriesDataset $repositoriesDataset, RepositoryRecord $repository, RepositoryService $repositoryService
+        RepositoriesDataset $repositoriesDataset, RepositoryRecord $repository, RepositoryService $repositoryService,
+        CreatePullRequest $createPullRequest
     ) {
         // $repository->syncBranchesFromRepository();
 
         return view('Condo\Repository:repository\view', [
-            'repository' => $repository,
-            'branches'   => $repositoriesDataset->getActiveRepositoryBranches($repository),
+            'repository'            => $repository,
+            'branches'              => $repositoriesDataset->getActiveRepositoryBranches($repository),
+            'createPullRequestForm' => $createPullRequest,
         ]);
     }
 
