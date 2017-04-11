@@ -1,5 +1,6 @@
 <?php namespace Condo\Repository\Controller;
 
+use Condo\Repository\Dataset\Repositories as RepositoriesDataset;
 use Condo\Repository\Form\AddRepository;
 use Condo\Repository\Record\Repository as RepositoryRecord;
 use Condo\Repository\Service\Repository as RepositoryService;
@@ -41,13 +42,14 @@ class Repository
                                                           ['repository' => $repositoryRecord]));
     }
 
-    public function getViewAction(RepositoryRecord $repository, RepositoryService $repositoryService)
-    {
-        $repository->syncBranchesFromRepository();
+    public function getViewAction(
+        RepositoriesDataset $repositoriesDataset, RepositoryRecord $repository, RepositoryService $repositoryService
+    ) {
+        // $repository->syncBranchesFromRepository();
 
         return view('Condo\Repository:repository\view', [
             'repository' => $repository,
-            'branches'   => $repository->branches,
+            'branches'   => $repositoriesDataset->getActiveRepositoryBranches($repository),
         ]);
     }
 

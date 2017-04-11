@@ -21,11 +21,6 @@ class Repository extends Record
         return $this->repositoryHandler;
     }
 
-    public function getBranchesAttribute()
-    {
-        return;
-    }
-
     public function syncBranchesFromRepository()
     {
         $branches = $this->getRepositoryHandler()->getBranches();

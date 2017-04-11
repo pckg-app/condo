@@ -39,4 +39,11 @@ class Condo extends Provider
         ];
     }
 
+    public function assets()
+    {
+        return [
+            'js/condo.js',
+        ];
+    }
+
 }

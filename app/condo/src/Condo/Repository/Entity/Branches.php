@@ -8,4 +8,10 @@ class Branches extends Entity
 
     protected $record = Branch::class;
 
+    public function repository()
+    {
+        return $this->belongsTo(Repositories::class)
+                    ->foreignKey('repository_id');
+    }
+
 }

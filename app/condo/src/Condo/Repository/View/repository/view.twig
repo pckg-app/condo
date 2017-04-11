@@ -12,30 +12,267 @@
                 <thead>
                 <tr>
                     <th>Branch</th>
-                    <th>Author</th>
-                    <th>Commit</th>
-                    <th></th>
+                    <th>Status</th>
+                    <th>Version</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="branch in branches">
                     <td>${ branch.branch }</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <button v-if="['new', 'ahead', 'merged', 'releasing', 'released', 'develop'].indexOf(branch.status_id) >= 0"
+                                type="button" @click.prevent="openSyncBranchModal(branch)">
+                            Sync
+                        </button>
+                        <span v-if="branch.status_id == 'syncing'">Syncing</span>
+                        <template v-else-if="branch.status_id == 'ahead'">
+                            <template v-if="!branch.pull_request">
+                                <button type="button" @click.prevent="openCreatePullRequestModal(branch)">Create pull
+                                    request
+                                </button>
+                                <button type="button" @click.prevent="openMergeToPreprodModal(branch)">Merge to
+                                    preprod
+                                </button>
+                            </template>
+                            <template v-else>
+                                <button type="button" @click.prevent="openMergePullRequestModal(branch)">Merge pull
+                                    request to
+                                    preprod
+                                </button>
+                            </template>
+                        </template>
+                        <span v-else-if="branch.status_id == 'merged'">On preprod</span>
+                        <span v-else-if="branch.status_id == 'releasing'">Releasing</span>
+                        <span v-else-if="branch.status_id == 'released'">Released</span>
+                        <button v-else-if="branch.status_id == 'develop'" type="button"
+                                @click.prevent="openPrepareReleaseModal(branch)">Prepare release
+                        </button>
+                        <button v-else-if="branch.status_id == 'release'" type="button"
+                                @click.prevent="openMakeReleaseModal(branch)">Make release
+                        </button>
+                        <span v-else-if="branch.status_id == 'master'">Master branch</span>
+                    </td>
+                    <td>
+                        <span v-if="branch.status_id == 'master'">7fda460b - v2.3.3</span>
+                        <span v-else-if="branch.status_id == 'release'">c4f578ed - v3.0.0 / v2.4.0</span>
+                        <span v-else-if="branch.status_id == 'develop'">189c7258 - v3.0.1 / v2.4.1</span>
+                        <span v-else>783d03e7</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'syncBranchModal'} %}
+                {% block header %}
+                    Sync ${ branch.branch } branch
+                {% endblock %}
+                {% block body %}
+                    <p>This action will compare ${ branch.branch } branch to develop and master branches and update
+                        branch status.</p>
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="branch.sync()">Sync branch</button>
+                {% endblock %}
+            {% endembed %}
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'createPullRequestModal'} %}
+                {% block header %}
+                    Create pull request for ${ branch.branch } branch
+                {% endblock %}
+                {% block body %}
+                    <p>This action will create pull request on remote.</p>
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="createPullRequest()">Create pull
+                        request
+                    </button>
+                {% endblock %}
+            {% endembed %}
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'mergeToPreprodModal'} %}
+                {% block header %}
+                    Merge branch ${ branch.branch } to preprod
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="mergeToPreprod()">Merge to preprod
+                    </button>
+                {% endblock %}
+            {% endembed %}
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'mergePullRequestModal'} %}
+                {% block header %}
+                    Merge branch ${ branch.branch } pull request
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="mergePullRequest()">Merge pull request
+                    </button>
+                {% endblock %}
+            {% endembed %}
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'prepareReleaseModal'} %}
+                {% block header %}
+                    Prepare release from ${ branch.branch }
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="prepareRelease()">Prepare release
+                    </button>
+                {% endblock %}
+            {% endembed %}
+            {% embed 'Pckg/Generic/View/modal.twig' with {'id': 'makeReleaseModal'} %}
+                {% block header %}
+                    Make release
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                {% block footer %}
+                    <button type="button" class="btn btn-success" @click.prevent="makeRelease()">Make release</button>
+                {% endblock %}
+            {% endembed %}
+            <div>
+                <p><b>Creating branches</b></p>
+                <p>Feature branches should be branched from <u>master</u> or <u>develop</u> branch.</p>
+                <p>Bugfix branch may be branched from <u>master</u> or <u>develop</u> branch.</p>
+                <p>Security branches may be branched from <u>master</u> only.</p>
+
+                <p><b>Deploying to staging</b></p>
+                <p>Staging deploys are always <u>automatic</u> via webhook.</p>
+
+                <p><b>Versioning</b></p>
+                <p>majorVersion.minorVersion.patch</p>
+                <p>Each version change must reset trailing versions.</p>
+                <p><u>Feature</u> releases may increase minor or major version.</p>
+                <p><u>Security</u> and <u>bug</u> fix relases may increase <u>patch</u> version.</p>
+                <p><u>Breaking</u> changes must increase <u>major</u> version.</p>
+                <p><u>Deprecated</u> changes must increase <u>minor</u> or <u>major</u> version on adding.</p>
+                <p><u>Deprecated</u> changes must increase <u>major</u> version increase on removal.</p>
+
+                <p><b>Preparing release</b></p>
+                <p>When <u>development</u> branch is stable we can branch it to <u>release-vx.x</u> branch.</p>
+                <p>Possible <u>dependency updates</u> are applied in <u>release</u> branch.</p>
+                <p><u>Release</u> branch is <u>merged</u> into <u>master</u>.</p>
+                <p><u>Master</u> branch is <u>tagged</u>.</p>
+                <p><u>Master</u> is <u>merged</u> into <u>develop</u> branch.</p>
+
+                <p><b>Preparing security release</b></p>
+                <p>When ready, <u>security</u> branch gets branched directly to <u>release</u> branch.</p>
+                <p><u>No dependency updates</u> (except related to security fix) are changed.</p>
+                <p><u>Release</u> branch is <u>merged</u> into <u>master</u>.</p>
+                <p><u>Master</u> branch is <u>tagged</u>.</p>
+                <p><u>Master</u> is <u>merged</u> into <u>develop</u> branch.</p>
+
+                <p><b>Deploying to production</b></p>
+                <p>Production deploys are always <u>manual</u>.</p>
+                <p>All tests, except for security fixes, should pass when deploying to production.</p>
+
+                <p><b>Nightly builds</b></p>
+                <p>Nightly builds are automatically <u>tagged</u> on <u>develop</u> branch.</p>
+
+                <p><b>Branch statuses</b></p>
+                <p>
+                <ul>
+                    <li>New - not synced branches</li>
+                    <li>Syncing - syncing branch</li>
+                    <li>Ahead - ahead of master</li>
+                    <li>Merged - merged into develop</li>
+                    <li>Releasing - merged into release</li>
+                    <li>Released - merged into master</li>
+                    <li>Develop - main develop / staging branch</li>
+                    <li>Release - release branches</li>
+                    <li>Master - master / main / production branch</li>
+                </ul>
+                </p>
+            </div>
         </div>
     </script>
     <script>
+
+        Condo.Branches.Entity = class BranchesEntity extends Pckg.Database.Entity {
+
+            getRelations() {
+                return {
+                    /*repository: {
+                     type: Object,
+                     of: Impero.Servers.Record.ServersService
+                     }*/
+                };
+            }
+
+            getFields() {
+                return {
+                    id: Number,
+                    branch: String
+                };
+            }
+
+        };
+        Condo.Branches.Record = class BranchRecord extends Pckg.Database.Record {
+            sync() {
+                http.post(utils.url('{{ url('condo.branch.sync') }}', {branch: this.id}), {}, function (data) {
+                    console.log(data);
+                });
+            }
+
+            getEntity() {
+                return new Condo.Branches.Entity();
+            }
+        };
+
         Vue.component('condo-repository-view', {
             template: '#condo-repository-view-template',
             mixins: [pckgDelimiters],
             data: function () {
                 return {
                     repository: {{ repository.toJSON() | raw }},
-                    branches: {{ branches | json_encode | raw }}
+                    branches: {{ branches | json_encode | raw }},
+                    branch: {}
                 };
+            },
+            methods: {
+
+                openSyncBranchModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#syncBranchModal').modal('show');
+                },
+                openCreatePullRequestModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#createPullRequestModal').modal('show');
+                },
+                openMergeToPreprodModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#mergeToPreprodModal').modal('show');
+                },
+                openMergePullRequestModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#mergePullRequestModal').modal('show');
+                },
+                openPrepareReleaseModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#prepareReleaseModal').modal('show');
+                },
+                openMakeReleaseModal: function (branch) {
+                    this.branch = new Condo.Branches.Record(branch);
+                    $('#makeReleaseModal').modal('show');
+                },
+                syncBranch: function () {
+                    $('#syncBranchModal').modal('hide');
+                    this.branch.sync();
+                },
+                createPullRequest: function () {
+                    $('#createPullRequestModal').modal('hide');
+                },
+                mergeToPreprod: function () {
+                    $('#mergeToPreprodModal').modal('hide');
+                },
+                mergePullRequest: function () {
+                    $('#mergePullRequestModal').modal('hide');
+                },
+                prepareRelease: function () {
+                    $('#prepareReleaseModal').modal('hide');
+                },
+                makeRelease: function () {
+                    $('#makeReleaseModal').modal('hide');
+                }
             }
         });
     </script>

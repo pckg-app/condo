@@ -20,30 +20,49 @@ class Branch extends Record
         $dir = $this->createTmpDir();
 
         $commands = [
-            'git init .',
-            'git remote add origin https://schtr4jh:none@bitbucket.org/gnp/derive.git',
             'git fetch --all',
             'git checkout master',
+            'git pull --ff',
             'git branch -a --no-merged',
         ];
-        d($dir);
+
+        if (!is_dir($dir . 'app')) {
+            $commands = [
+                'git init .',
+                'git remote add origin https://schtr4jh:none@bitbucket.org/gnp/derive.git',
+                'git fetch --all',
+                'git checkout master',
+                'git pull --ff',
+                'git branch -a --no-merged',
+            ];
+        }
+
+        $output = null;
+        $return = null;
         foreach ($commands as $command) {
             $output = null;
             $return = null;
             exec('cd ' . $dir . ' && ' . $command, $output, $return);
-
-            d($command, $output, $return);
         }
-        dd('ok');
+
+        foreach ($output as $branch) {
+            $branch = str_replace('remotes/origin/', '', trim($branch));
+
+            if ($branch == $this->branch) {
+                $this->setAndSave(['status_id' => 'unmerged']);
+            }
+        }
     }
 
     private function createTmpDir()
     {
-        $dir = path('tmp') . sha1(microtime());
+        $dir = path('tmp') . 'repository/' . $this->repository_id;
 
-        mkdir($dir);
+        if (!is_dir($dir)) {
+            mkdir($dir);
+        }
 
-        return $dir;
+        return $dir . '/';
     }
 
 }
