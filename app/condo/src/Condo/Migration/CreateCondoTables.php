@@ -23,6 +23,9 @@ class CreateCondoTables extends Migration
         $branches->varchar('branch');
         $branches->varchar('description');
         $branches->varchar('status_id');
+        $branches->datetime('updated_at');
+        $branches->varchar('commit', 40);
+        $branches->varchar('author');
 
         $releases = $this->table('releases');
         $releases->title();

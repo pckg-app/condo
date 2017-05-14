@@ -3,6 +3,7 @@
 use Condo\Repository\Entity\Branches;
 use Condo\Repository\Entity\Repositories;
 use Condo\Repository\Service\Repository as RepositoryService;
+use Pckg\Collection;
 use Pckg\Database\Record;
 
 class Repository extends Record
@@ -21,31 +22,42 @@ class Repository extends Record
         return $this->repositoryHandler;
     }
 
+    public function sync()
+    {
+        $this->syncBranchesFromRepository();
+    }
+
     public function syncBranchesFromRepository()
     {
-        $branches = $this->getRepositoryHandler()->getBranches();
-        dd($branches);
+        /**
+         * Get all branches from remote repository handler.
+         */
+        $branches = new Collection($this->getRepositoryHandler()->getBranches());
 
-        $oldBranches = (new Branches())->where('repository_id', $this->id)
-                                       ->where('branch', array_keys((array)$branches))
-                                       ->all()
-                                       ->keyBy('branch');
+        /**
+         * Get known branches.
+         */
+        $knownBranches = (new Branches())->where('repository_id', $this->id)
+                                         ->where('branch', $branches->keys())
+                                         ->all()
+                                         ->keyBy('branch');
 
-        foreach ($branches as $branch => $branchData) {
-            if ($oldBranches->hasKey($branch)) {
-                continue;
+        /**
+         * Sync only outdated branches.
+         * Create and sync new branches.
+         */
+        $branches->each(function($branchData, $branch) use ($knownBranches) {
+            $knownBranch = $knownBranches->getKey($branch);
+
+            if ($knownBranch && $branchData['timestamp'] > date('Y-m-d', strtotime('-1month'))) {
+                $knownBranches->getKey($branch)->syncBranch($branchData);
+            } elseif (!$knownBranch) {
+                (Branch::create([
+                                    'repository_id' => $this->id,
+                                    'branch'        => $branch,
+                                    'status_id'     => 'new',
+                                ]))->syncBranch();
             }
-
-            $newBranch = Branch::create([
-                                            'repository_id' => $this->id,
-                                            'branch'        => $branch,
-                                            'status_id'     => 'new',
-                                        ]);
-            $newBranch->syncBranch();
-        }
-
-        $oldBranches->each(function(Branch $branch) {
-            $branch->syncBranch();
         });
     }
 

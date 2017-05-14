@@ -1,5 +1,6 @@
 <?php namespace Condo\Repository\Provider;
 
+use Condo\Repository\Console\SyncAll;
 use Condo\Repository\Controller\Branch as BranchController;
 use Condo\Repository\Controller\Repository as RepositoryController;
 use Condo\Repository\Resolver\Branch as BranchResolver;
@@ -36,6 +37,13 @@ class Repository extends Provider
                         ->resolvers(['branch' => BranchResolver::class]),
 
                 ]),
+        ];
+    }
+
+    public function consoles()
+    {
+        return [
+            SyncAll::class,
         ];
     }
 

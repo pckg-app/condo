@@ -46,7 +46,7 @@ class Bitbucket
         $repository->setCredentials($this->getAuth());
 
         $repository = $repository->branches($this->vendor, $this->package);
-        $response = json_decode($repository->getContent());
+        $response = json_decode($repository->getContent(), true);
 
         return $response;
     }

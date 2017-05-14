@@ -53,10 +53,8 @@
                         <span v-else-if="branch.status_id == 'master'">Master branch</span>
                     </td>
                     <td>
-                        <span v-if="branch.status_id == 'master'">7fda460b - v2.3.3</span>
-                        <span v-else-if="branch.status_id == 'release'">c4f578ed - v3.0.0 / v2.4.0</span>
-                        <span v-else-if="branch.status_id == 'develop'">189c7258 - v3.0.1 / v2.4.1</span>
-                        <span v-else>783d03e7</span>
+                        ${ branch.commit }<br/>
+                        ${ branch.updated_at | datetime }
                     </td>
                 </tr>
                 </tbody>
@@ -183,6 +181,15 @@
                     <li>Master - master / main / production branch</li>
                 </ul>
                 </p>
+
+                <p><b>Trello commands</b></p>
+                <p>@condo connect $branch - connect trello card with speciffic branch</p>
+                <p>@condo disconnect $branch - disconnect trello card with speciffic branch</p>
+                <p>@condo test - merge branches connected with this card to preprod</p>
+                <p>@condo tested - mark branches connected with this card as tested and prepared to release</p>
+                <p>@condo release - create quick release for branches connected with this card</p>
+                <p>Note: @condo parse errors are visible in condo dashboard. Only connected cards are parsed. Production
+                    deploy are manual - with possible webhooks on release.</p>
             </div>
         </div>
     </script>
