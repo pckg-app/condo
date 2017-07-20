@@ -17,6 +17,7 @@ class Condo extends Provider
     {
         return [
             (new Pckg\Framework\Router\Route\Route('/', 'index', CondoController::class)),
+            (new Pckg\Framework\Router\Route\Route('/webhook', 'webhook', CondoController::class)),
         ];
     }
 
