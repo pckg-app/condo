@@ -61,4 +61,15 @@ class Repository extends Record
         });
     }
 
+    public function executeTests()
+    {
+    }
+
+    public function dispatchWebhooks()
+    {
+        /**
+         * Each repository has webhooks set.
+         */
+    }
+
 }
