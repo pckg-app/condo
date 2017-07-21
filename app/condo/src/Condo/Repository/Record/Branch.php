@@ -109,4 +109,22 @@ class Branch extends Record
         return $dir . '/';
     }
 
+    public function webhookActivated()
+    {
+        /**
+         * Run tests if necessary.
+         * Currently only codeception tests are available.
+         */
+        if ($this->test) {
+        }
+
+        /**
+         * Run deploys if necessary.
+         *  Condo, Center, Derive
+         */
+        if ($this->deploy) {
+
+        }
+    }
+
 }
