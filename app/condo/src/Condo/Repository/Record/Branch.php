@@ -1,6 +1,7 @@
 <?php namespace Condo\Repository\Record;
 
 use Condo\Repository\Entity\Branches;
+use Pckg\Collection;
 use Pckg\Database\Record;
 
 class Branch extends Record
@@ -116,6 +117,9 @@ class Branch extends Record
          * Currently only codeception tests are available.
          */
         if ($this->test) {
+            /**
+             * Tests are currently not supported.
+             */
         }
 
         /**
@@ -123,8 +127,40 @@ class Branch extends Record
          *  Condo, Center, Derive
          */
         if ($this->deploy) {
-
+            if ($this->branch == 'master') {
+                /**
+                 * Master for impero, center and condo triggers deploy on schtr4jh.net.
+                 * Master for derive doesn't trigger deploy.
+                 */
+            } else if (in_array($this->branch, ['preprod', 'develop'])) {
+                /**
+                 * Preprod and develop for derive triggers successful deploy on gonparty.eu.
+                 * Preprod for impero, center and condo doesn't exist.
+                 */
+                $this->triggerDeployWebhook();
+            } else {
+                /**
+                 * Other branches are currently not supported.
+                 */
+            }
         }
+    }
+
+    public function triggerDeployWebhook()
+    {
+        (new Collection(explode("\n", $this->deploy)))
+            ->trim()
+            ->each(function($url) {
+                $client = new \GuzzleHttp\Client();
+                $client->post($url, [
+                    'connect_timeout' => 5,
+                    'json' => [
+                        'event'      => 'deploy',
+                        'repository' => $this->repository->repository,
+                        'branch'     => $this->branch,
+                    ],
+                ]);
+            });
     }
 
 }

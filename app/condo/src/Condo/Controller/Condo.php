@@ -29,11 +29,11 @@ class Condo
         /**  Merge feature, bugfix and hotfix branch to preprod.
          *      If successful, deploy to preprod
          */
-        $branch = (new Branches())->where('repository_id', $repository->id)
-                                  ->where('branch', $branch)
-                                  ->oneAndIf(function(Branch $branch) {
-                                      $branch->webhookActivated();
-                                  });
+        (new Branches())->where('repository_id', $repository->id)
+                        ->where('branch', $branch)
+                        ->oneAndIf(function(Branch $branch) {
+                            $branch->webhookActivated();
+                        });
 
         return 'ok';
     }
