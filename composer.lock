@@ -1499,12 +1499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "280e9a0793507ced0c015e58fe540c1cb4518ebe"
+                "reference": "fde517a2541190a074fe7b087cfab5ba23a91f7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/280e9a0793507ced0c015e58fe540c1cb4518ebe",
-                "reference": "280e9a0793507ced0c015e58fe540c1cb4518ebe",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/fde517a2541190a074fe7b087cfab5ba23a91f7a",
+                "reference": "fde517a2541190a074fe7b087cfab5ba23a91f7a",
                 "shasum": ""
             },
             "require": {
@@ -1538,7 +1538,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-07-26 10:58:27"
+            "time": "2017-08-05 20:42:20"
         },
         {
             "name": "pckg/generic",
@@ -3717,7 +3717,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2017-08-05T13:57:20+00:00"
+            "time": "2017-08-05 13:57:20"
         },
         {
             "name": "guzzlehttp/guzzle",
