@@ -13,7 +13,7 @@ class Condo
         return view('index');
     }
 
-    public function getWebhookAction()
+    public function postWebhookAction()
     {
         $repositoryUrl = 'https://bitbucket.org/gnp/derive.git';
         $branch = 'preprod'; // master, preprod, develop, BR-asd, bla-bla, foo-bar, ...

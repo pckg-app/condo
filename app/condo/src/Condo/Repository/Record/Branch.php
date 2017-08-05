@@ -112,6 +112,7 @@ class Branch extends Record
 
     public function webhookActivated()
     {
+        d(post()->all());
         /**
          * Run tests if necessary.
          * Currently only codeception tests are available.
