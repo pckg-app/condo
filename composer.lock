@@ -1457,12 +1457,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/database.git",
-                "reference": "603ca9362441bc20d82371b3ad3e982da450eb41"
+                "reference": "b907960411da24ba2612df4fb3884020c5f1ec93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/database/zipball/603ca9362441bc20d82371b3ad3e982da450eb41",
-                "reference": "603ca9362441bc20d82371b3ad3e982da450eb41",
+                "url": "https://api.github.com/repos/pckg/database/zipball/b907960411da24ba2612df4fb3884020c5f1ec93",
+                "reference": "b907960411da24ba2612df4fb3884020c5f1ec93",
                 "shasum": ""
             },
             "require": {
@@ -1491,7 +1491,7 @@
             ],
             "description": "Just another php / orm / pdo implementation for simple and advanced data management",
             "homepage": "https://github.com/pckg/database",
-            "time": "2017-07-01 06:53:02"
+            "time": "2017-08-05 21:15:11"
         },
         {
             "name": "pckg/framework",
@@ -1499,12 +1499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "aedf27d8204701287d58817193667504a339aa1c"
+                "reference": "d4fdb5676883d34bc2cf66ffe989c61b35299a0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/aedf27d8204701287d58817193667504a339aa1c",
-                "reference": "aedf27d8204701287d58817193667504a339aa1c",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/d4fdb5676883d34bc2cf66ffe989c61b35299a0f",
+                "reference": "d4fdb5676883d34bc2cf66ffe989c61b35299a0f",
                 "shasum": ""
             },
             "require": {
@@ -1538,7 +1538,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-08-05 21:06:19"
+            "time": "2017-08-05 21:15:22"
         },
         {
             "name": "pckg/generic",
