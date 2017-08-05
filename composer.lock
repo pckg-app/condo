@@ -1317,12 +1317,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/auth.git",
-                "reference": "6cf6dc5ed42e275c1a6ae6cba66f9ca89cb068dd"
+                "reference": "bda4c775b8425604aec6116472fbdd5a1d6f4f49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/auth/zipball/6cf6dc5ed42e275c1a6ae6cba66f9ca89cb068dd",
-                "reference": "6cf6dc5ed42e275c1a6ae6cba66f9ca89cb068dd",
+                "url": "https://api.github.com/repos/pckg/auth/zipball/bda4c775b8425604aec6116472fbdd5a1d6f4f49",
+                "reference": "bda4c775b8425604aec6116472fbdd5a1d6f4f49",
                 "shasum": ""
             },
             "require": {
@@ -1347,7 +1347,7 @@
             ],
             "description": "Provides basic functionality for authentication and authorization users in database, on Twitter, Facebook and with OAuth2 standard",
             "homepage": "https://github.com/pckg/auth",
-            "time": "2017-07-25 12:08:44"
+            "time": "2017-08-05 21:59:22"
         },
         {
             "name": "pckg/charts",
@@ -1499,12 +1499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "d4fdb5676883d34bc2cf66ffe989c61b35299a0f"
+                "reference": "9ca7f9e33d089bc04ecf5835bbf50c788bb7a175"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/d4fdb5676883d34bc2cf66ffe989c61b35299a0f",
-                "reference": "d4fdb5676883d34bc2cf66ffe989c61b35299a0f",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/9ca7f9e33d089bc04ecf5835bbf50c788bb7a175",
+                "reference": "9ca7f9e33d089bc04ecf5835bbf50c788bb7a175",
                 "shasum": ""
             },
             "require": {
@@ -1538,7 +1538,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-08-05 21:15:22"
+            "time": "2017-08-05 22:04:58"
         },
         {
             "name": "pckg/generic",
