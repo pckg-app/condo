@@ -132,6 +132,7 @@ class Branch extends Record
                  * Master for impero, center and condo triggers deploy on schtr4jh.net.
                  * Master for derive doesn't trigger deploy.
                  */
+                $this->triggerDeployWebhook();
             } else if (in_array($this->branch, ['preprod', 'develop'])) {
                 /**
                  * Preprod and develop for derive triggers successful deploy on gonparty.eu.
