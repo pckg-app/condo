@@ -77,7 +77,7 @@ class Condo
         if ($repositoryUrl) {
             $this->postBitbucketWebhookAction();
         } else {
-            $repositoryUrl = post('repository.html_url');
+            $repositoryUrl = post('repository.html_url', null);
             if ($repositoryUrl) {
                 $this->postGithubWebhookAction();
             }
