@@ -1,6 +1,7 @@
 <?php namespace Condo\Repository\Record;
 
 use Condo\Repository\Entity\Branches;
+use GuzzleHttp\Client;
 use Pckg\Collection;
 use Pckg\Database\Record;
 
@@ -152,7 +153,7 @@ class Branch extends Record
         (new Collection(explode("\n", $this->deploy)))
             ->trim()
             ->each(function($url) {
-                $client = new \GuzzleHttp\Client();
+                $client = new Client();
                 $client->post($url, [
                     'connect_timeout' => 5,
                     'json' => [

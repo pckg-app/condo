@@ -36,7 +36,8 @@
     "intervention/image": "^2.3",
     "league/csv": "^8.1",
     "icepay/api": "^0.0.1",
-    "gentle/bitbucket-api": "^0.8.2"
+    "gentle/bitbucket-api": "^0.8.2",
+    "guzzlehttp/guzzle": "^6.2@dev"
   },
   "require-dev": {
     "codeception/codeception": "dev-master"
