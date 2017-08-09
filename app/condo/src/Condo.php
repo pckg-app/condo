@@ -1,6 +1,7 @@
 <?php
 
 use Condo\Controller\Condo as CondoController;
+use Condo\Middleware\LogWebhookRequest;
 use Condo\Repository\Provider\Repository;
 use Pckg\Framework\Provider;
 use Pckg\Framework\Provider\Framework;
@@ -17,7 +18,10 @@ class Condo extends Provider
     {
         return [
             (new Pckg\Framework\Router\Route\Route('/', 'index', CondoController::class)),
-            (new Pckg\Framework\Router\Route\Route('/webhook', 'webhook', CondoController::class)),
+            (new Pckg\Framework\Router\Route\Route('/webhook', 'webhook', CondoController::class))
+                ->middlewares([
+                                  LogWebhookRequest::class,
+                              ]),
         ];
     }
 

@@ -32,6 +32,13 @@ class CreateCondoTables extends Migration
         $releases->varchar('major');
         $releases->varchar('minor');
         $releases->varchar('patch');
+
+        $webhooks = $this->table('webhooks');
+        $webhooks->datetime('created_at');
+        $webhooks->text('data');
+        $webhooks->varchar('ip');
+
+        $this->save();
     }
 
 }
