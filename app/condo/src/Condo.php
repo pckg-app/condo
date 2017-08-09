@@ -11,6 +11,9 @@ use Pckg\Generic\Provider\GenericPaths;
 use Pckg\Manager\Middleware\RegisterCoreAssets;
 use Pckg\Manager\Provider\Manager;
 
+/**
+ * Class Condo
+ */
 class Condo extends Provider
 {
 
