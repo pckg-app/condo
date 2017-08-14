@@ -4415,7 +4415,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-10T16:53:18+00:00"
+            "time": "2017-08-10 16:53:18"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
