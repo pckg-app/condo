@@ -17,22 +17,22 @@ init:
 
 deploy:
   # put project down
-  - php console project:down
+  #- php console project:down
 
   # pull changes with framework
   - php console project:pull
 
   # import translations
-  - php console condo translator:import
+  #- php console condo translator:import
 
   # clear cache
-  - php console cache:clear
+  #- php console cache:clear
 
   # install migrations
-  - php console condo migrator:install
+  #- php console condo migrator:install
 
   # clear cache
   - php console cache:clear
 
   # put project up
-  - php console project:up
+  #- php console project:up
