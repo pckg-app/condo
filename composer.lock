@@ -1615,12 +1615,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "0ce4e07f7cd141935b1c72bece90b0fffbb257d4"
+                "reference": "5068620ea5d634512cdbaaa4e28c027a52f68824"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/0ce4e07f7cd141935b1c72bece90b0fffbb257d4",
-                "reference": "0ce4e07f7cd141935b1c72bece90b0fffbb257d4",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/5068620ea5d634512cdbaaa4e28c027a52f68824",
+                "reference": "5068620ea5d634512cdbaaa4e28c027a52f68824",
                 "shasum": ""
             },
             "require": {
@@ -1654,7 +1654,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-09-07 08:45:57"
+            "time": "2017-09-07 08:50:30"
         },
         {
             "name": "pckg/generic",
