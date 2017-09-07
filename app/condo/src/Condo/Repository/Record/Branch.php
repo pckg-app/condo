@@ -18,25 +18,9 @@ class Branch extends Record
         return $handler->createPullRequest();
     }
 
-    public function syncBranch($branchData)
+    public function prepareRepository()
     {
-        $newData = [
-            'updated_at' => $branchData['timestamp'],
-            'commit'     => $branchData['node'],
-            'author'     => $branchData['author'],
-        ];
-
-        if (in_array($this->branch, ['master', 'develop'])) {
-            $newData['status_id'] = $this->branch;
-
-            return $this->setAndSave($newData);
-        }
-
-        /**
-         * Determine if branch is merged.
-         */
         $dir = $this->createTmpDir();
-
         $output = null;
         $return = null;
         if (!is_dir($dir . 'app')) {
@@ -58,6 +42,28 @@ class Branch extends Record
                 exec('cd ' . $dir . ' && ' . $command, $output, $return);
             }
         }
+    }
+
+    public function syncBranch($branchData)
+    {
+        $newData = [
+            'updated_at' => $branchData['timestamp'],
+            'commit'     => $branchData['node'],
+            'author'     => $branchData['author'],
+        ];
+
+        if (in_array($this->branch, ['master', 'develop'])) {
+            $newData['status_id'] = $this->branch;
+
+            return $this->setAndSave($newData);
+        }
+
+        /**
+         * Determine if branch is merged.
+         */
+        $dir = $this->createTmpDir();
+
+        $this->prepareRepository();
 
         $inMaster = false;
         $inRelease = false;
@@ -174,6 +180,7 @@ class Branch extends Record
 
     public function readDotPckg()
     {
+        $this->prepareRepository();
         $dir = $this->getTmpDir();
         $commands = [
             'git checkout ' . $this->branch,
