@@ -75,6 +75,9 @@ class Condo
 
     public function postWebhookAction()
     {
+        /**
+         * @T00D00 - run this in job so we can return response immediately
+         */
         $repositoryUrl = post('repository.links.html.href', null);
         if ($repositoryUrl) {
             $this->postBitbucketWebhookAction();
