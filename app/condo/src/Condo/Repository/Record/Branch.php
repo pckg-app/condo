@@ -45,6 +45,7 @@ class Branch extends Record
                 $output = null;
                 $return = null;
                 exec('cd ' . $dir . ' && ' . $command, $output, $return);
+                d($command, $output, $return);
             }
         }
     }
