@@ -29,7 +29,9 @@ class Condo
              * This is first call that is made after git push, we will trigger all actions, wooow. :)
              * First, check for repository in our database.
              */
-            $repository = (new Repositories())->where('repository', $repositoryUrl)->oneOr(function() use ($repositoryUrl) {
+            $repository = (new Repositories())->where('repository', $repositoryUrl)->oneOr(function() use (
+                $repositoryUrl
+            ) {
                 throw new Exception('Repository ' . $repositoryUrl . ' not found in Condo');
             });
 
