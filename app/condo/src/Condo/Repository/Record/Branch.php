@@ -4,6 +4,7 @@ use Condo\Repository\Entity\Branches;
 use GuzzleHttp\Client;
 use Pckg\Collection;
 use Pckg\Database\Record;
+use Symfony\Component\Yaml\Yaml;
 
 class Branch extends Record
 {
@@ -100,15 +101,20 @@ class Branch extends Record
         $this->setAndSave($newData);
     }
 
+    private function getTmpDir()
+    {
+        return path('tmp') . 'repository/' . $this->repository_id . '/';
+    }
+
     private function createTmpDir()
     {
-        $dir = path('tmp') . 'repository/' . $this->repository_id;
+        $dir = $this->getTmpDir();
 
         if (!is_dir($dir)) {
             mkdir($dir);
         }
 
-        return $dir . '/';
+        return $dir;
     }
 
     public function webhookActivated()
@@ -125,7 +131,7 @@ class Branch extends Record
 
         /**
          * Run deploys if necessary.
-         *  Condo, Center, Derive
+         *  Condo, Center, Derive, Hardcopy, Impero
          */
         if ($this->deploy) {
             if ($this->branch == 'master') {
@@ -155,14 +161,43 @@ class Branch extends Record
             ->each(function($url) {
                 $client = new Client();
                 $client->post($url, [
-                    'connect_timeout' => 5,
-                    'json' => [
+                    'connect_timeout' => 15,
+                    'json'            => [
                         'event'      => 'deploy',
                         'repository' => $this->repository->repository,
                         'branch'     => $this->branch,
+                        'pckg'       => $this->readDotPckg(),
                     ],
                 ]);
             });
+    }
+
+    public function readDotPckg()
+    {
+        $dir = $this->getTmpDir();
+        $commands = [
+            'git checkout ' . $this->branch,
+            'git pull --ff',
+        ];
+
+        /**
+         * We need to refresh repository first.
+         */
+        foreach ($commands as $command) {
+            exec('cd ' . $dir . ' && ' . $command, $output, $return);
+        }
+
+        /**
+         * Check if file exists.
+         */
+        if (!file_exists($dir . '.pckg/pckg.yaml')) {
+            return [];
+        }
+
+        /**
+         * And then read files.
+         */
+        return Yaml::parse(file_get_contents($dir . '.pckg/pckg.yaml'));
     }
 
 }

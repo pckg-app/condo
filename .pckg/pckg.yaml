@@ -1,0 +1,38 @@
+repository: git@bitbucket.org:pckg-app/condo.git
+branch: master
+
+init:
+  # install dependencies
+  - composer install --no-dev --prefer-dist
+  - bower install
+  - npm install
+
+  # initial init of project, create framework directories
+
+  # chown to impero:www-data
+  - sudo chown impero:www-data . -R
+
+  # chown storage to www-data
+  - sudo chown www-data:www-data storage -R
+
+deploy:
+  # put project down
+  - php console project:down
+
+  # pull changes with framework
+  - php console project:pull
+
+  # import translations
+  - php console condo translator:import
+
+  # clear cache
+  - php console cache:clear
+
+  # install migrations
+  - php console condo migrator:install
+
+  # clear cache
+  - php console cache:clear
+
+  # put project up
+  - php console project:up
