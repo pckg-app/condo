@@ -28,14 +28,7 @@ class Branch extends Record
          * Transform https://bitbucket.org/a/b.git -> ssh://git@bitbucket.org:a/b.git
          */
         $url = $this->repository->repository;
-        $url = str_replace('https://', '', $url);
-
-        $pos = strpos($url, '/');
-        if ($pos !== false) {
-            $url = substr_replace($url, ':', $pos, 1);
-        }
-
-        $url = 'ssh://git@' . $url;
+        $url = str_replace('https://', 'ssh://git@', $url);
 
         if (!is_dir($dir . 'app')) {
             $commands = [
