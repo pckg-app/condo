@@ -1,5 +1,6 @@
 <?php namespace Condo\Repository\Provider;
 
+use Condo\Repository\Console\ActivateWebhook;
 use Condo\Repository\Console\SyncAll;
 use Condo\Repository\Controller\Branch as BranchController;
 use Condo\Repository\Controller\Repository as RepositoryController;
@@ -44,6 +45,7 @@ class Repository extends Provider
     {
         return [
             SyncAll::class,
+            ActivateWebhook::class,
         ];
     }
 
