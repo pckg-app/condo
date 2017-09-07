@@ -2,6 +2,7 @@
 
 use Condo\Repository\Entity\Branches;
 use Pckg\Framework\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 class ActivateWebhook extends Command
 {
@@ -12,7 +13,7 @@ class ActivateWebhook extends Command
              ->setDescription('Activate webhook')
              ->addOptions([
                               'branch' => 'Branch ID',
-                          ]);
+                          ], InputOption::VALUE_REQUIRED);
     }
 
     public function handle()
