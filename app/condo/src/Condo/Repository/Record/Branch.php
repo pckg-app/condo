@@ -32,8 +32,7 @@ class Branch extends Record
 
         if (!is_dir($dir . 'app')) {
             $commands = [
-                'git init .',
-                'git remote add origin ' . $url,
+                'git clone ' . $url . ' .',
                 'git checkout master',
                 'git branch --set-upstream-to=origin/master master',
                 'git pull --ff',
