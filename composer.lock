@@ -371,12 +371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d35b1165f34f09ffefef77a3344e84705cde4077"
+                "reference": "95b16a4802b998f330f8a8bfc3fa4e412a7ce05b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d35b1165f34f09ffefef77a3344e84705cde4077",
-                "reference": "d35b1165f34f09ffefef77a3344e84705cde4077",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/95b16a4802b998f330f8a8bfc3fa4e412a7ce05b",
+                "reference": "95b16a4802b998f330f8a8bfc3fa4e412a7ce05b",
                 "shasum": ""
             },
             "require": {
@@ -413,7 +413,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-09-06 07:11:10"
+            "time": "2017-09-08 09:53:19"
         },
         {
             "name": "gentle/bitbucket-api",
@@ -1573,12 +1573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/database.git",
-                "reference": "876f7f3b5a61f350ec483df664f19969d3bd27fa"
+                "reference": "593c94c2e389bdba9ff5e0a90b3b3e4c38958947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/database/zipball/876f7f3b5a61f350ec483df664f19969d3bd27fa",
-                "reference": "876f7f3b5a61f350ec483df664f19969d3bd27fa",
+                "url": "https://api.github.com/repos/pckg/database/zipball/593c94c2e389bdba9ff5e0a90b3b3e4c38958947",
+                "reference": "593c94c2e389bdba9ff5e0a90b3b3e4c38958947",
                 "shasum": ""
             },
             "require": {
@@ -1607,7 +1607,7 @@
             ],
             "description": "Just another php / orm / pdo implementation for simple and advanced data management",
             "homepage": "https://github.com/pckg/database",
-            "time": "2017-09-08 07:59:53"
+            "time": "2017-09-08 10:06:11"
         },
         {
             "name": "pckg/framework",
@@ -1615,12 +1615,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "5068620ea5d634512cdbaaa4e28c027a52f68824"
+                "reference": "a296f9827b159c7cb518ebd14fa926cedb897f9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/5068620ea5d634512cdbaaa4e28c027a52f68824",
-                "reference": "5068620ea5d634512cdbaaa4e28c027a52f68824",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/a296f9827b159c7cb518ebd14fa926cedb897f9b",
+                "reference": "a296f9827b159c7cb518ebd14fa926cedb897f9b",
                 "shasum": ""
             },
             "require": {
@@ -1654,7 +1654,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-09-07 08:50:30"
+            "time": "2017-09-08 10:35:04"
         },
         {
             "name": "pckg/generic",
