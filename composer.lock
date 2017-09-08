@@ -1573,12 +1573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/database.git",
-                "reference": "9699c3cbd086a2aa152ce84d3574b19d996d0136"
+                "reference": "876f7f3b5a61f350ec483df664f19969d3bd27fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/database/zipball/9699c3cbd086a2aa152ce84d3574b19d996d0136",
-                "reference": "9699c3cbd086a2aa152ce84d3574b19d996d0136",
+                "url": "https://api.github.com/repos/pckg/database/zipball/876f7f3b5a61f350ec483df664f19969d3bd27fa",
+                "reference": "876f7f3b5a61f350ec483df664f19969d3bd27fa",
                 "shasum": ""
             },
             "require": {
@@ -1607,7 +1607,7 @@
             ],
             "description": "Just another php / orm / pdo implementation for simple and advanced data management",
             "homepage": "https://github.com/pckg/database",
-            "time": "2017-09-01 10:10:59"
+            "time": "2017-09-08 07:59:53"
         },
         {
             "name": "pckg/framework",
@@ -1759,12 +1759,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/htmlbuilder.git",
-                "reference": "6cc3c3949a9d8e8ff3a2ee7d458953636975cdf4"
+                "reference": "37a6d666b73d9464335d891acc3c6a1d74d1d474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/htmlbuilder/zipball/6cc3c3949a9d8e8ff3a2ee7d458953636975cdf4",
-                "reference": "6cc3c3949a9d8e8ff3a2ee7d458953636975cdf4",
+                "url": "https://api.github.com/repos/pckg/htmlbuilder/zipball/37a6d666b73d9464335d891acc3c6a1d74d1d474",
+                "reference": "37a6d666b73d9464335d891acc3c6a1d74d1d474",
                 "shasum": ""
             },
             "require": {
@@ -1796,7 +1796,7 @@
             ],
             "description": "Build advanced forms in php with datasources, decorators, handlers and validators",
             "homepage": "https://bitbucket.org/lfw/htmlbuilder",
-            "time": "2017-09-06 08:22:13"
+            "time": "2017-09-08 08:00:55"
         },
         {
             "name": "pckg/import",
@@ -1952,12 +1952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/payment.git",
-                "reference": "a47c75c0cfdf3289008bb810d800652f7de410b7"
+                "reference": "8877b406d5be4b5751b2c516578ff50be0b1e350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/payment/zipball/a47c75c0cfdf3289008bb810d800652f7de410b7",
-                "reference": "a47c75c0cfdf3289008bb810d800652f7de410b7",
+                "url": "https://api.github.com/repos/pckg/payment/zipball/8877b406d5be4b5751b2c516578ff50be0b1e350",
+                "reference": "8877b406d5be4b5751b2c516578ff50be0b1e350",
                 "shasum": ""
             },
             "require": {
@@ -1991,7 +1991,7 @@
                 "proforma",
                 "sepa"
             ],
-            "time": "2017-07-12 12:07:48"
+            "time": "2017-09-08 08:01:25"
         },
         {
             "name": "pckg/queue",
@@ -2758,12 +2758,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "604b8cb9f694b05292bf3b580b298d50c1974e7e"
+                "reference": "bb89acb86c4079c8628b406cb1f7ae47ee4406bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/604b8cb9f694b05292bf3b580b298d50c1974e7e",
-                "reference": "604b8cb9f694b05292bf3b580b298d50c1974e7e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/bb89acb86c4079c8628b406cb1f7ae47ee4406bd",
+                "reference": "bb89acb86c4079c8628b406cb1f7ae47ee4406bd",
                 "shasum": ""
             },
             "require": {
@@ -2819,7 +2819,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-06 19:47:44"
+            "time": "2017-09-07 15:50:16"
         },
         {
             "name": "symfony/debug",
@@ -2883,12 +2883,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "6dcc0cb8e0f54ff395f7cdcfcaa371390f8c360a"
+                "reference": "7632d84d663032714aaef9d150b1d3762d2c93fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/6dcc0cb8e0f54ff395f7cdcfcaa371390f8c360a",
-                "reference": "6dcc0cb8e0f54ff395f7cdcfcaa371390f8c360a",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/7632d84d663032714aaef9d150b1d3762d2c93fa",
+                "reference": "7632d84d663032714aaef9d150b1d3762d2c93fa",
                 "shasum": ""
             },
             "require": {
@@ -2946,7 +2946,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-06 19:03:12"
+            "time": "2017-09-07 14:45:15"
         },
         {
             "name": "symfony/filesystem",
