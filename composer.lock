@@ -1615,12 +1615,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "0b50527b53b737a63413565dd6b1fd519b01534c"
+                "reference": "2e8315e27b68f0fea5456d0d1c5c77dfea2c23c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/0b50527b53b737a63413565dd6b1fd519b01534c",
-                "reference": "0b50527b53b737a63413565dd6b1fd519b01534c",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/2e8315e27b68f0fea5456d0d1c5c77dfea2c23c2",
+                "reference": "2e8315e27b68f0fea5456d0d1c5c77dfea2c23c2",
                 "shasum": ""
             },
             "require": {
@@ -1654,7 +1654,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-09-28 20:09:42"
+            "time": "2017-09-29 09:07:12"
         },
         {
             "name": "pckg/generic",
@@ -5466,7 +5466,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-26T14:59:44+00:00"
+            "time": "2017-09-26 14:59:44"
         },
         {
             "name": "theseer/tokenizer",
