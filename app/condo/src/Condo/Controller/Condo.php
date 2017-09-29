@@ -80,10 +80,12 @@ class Condo
          */
         $repositoryUrl = post('repository.links.html.href', null);
         if ($repositoryUrl) {
+            $this->respondAndContinue();
             $this->postBitbucketWebhookAction();
         } else {
             $repositoryUrl = post('repository.html_url', null);
             if ($repositoryUrl) {
+                $this->respondAndContinue();
                 $this->postGithubWebhookAction();
             }
         }
@@ -93,6 +95,19 @@ class Condo
         }
 
         return 'ok';
+    }
+
+    public function respondAndContinue()
+    {
+        ob_start();
+        echo "ok";
+        $size = ob_get_length();
+        header("Content-Encoding: none");
+        header("Content-Length: " . $size);
+        header("Connection: close");
+        ob_end_flush();
+        ob_flush();
+        flush();
     }
 
 }
