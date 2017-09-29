@@ -80,12 +80,12 @@ class Condo
          */
         $repositoryUrl = post('repository.links.html.href', null);
         if ($repositoryUrl) {
-            $this->respondAndContinue();
+            response()->respondAndContinue('ok, bitbucket');
             $this->postBitbucketWebhookAction();
         } else {
             $repositoryUrl = post('repository.html_url', null);
             if ($repositoryUrl) {
-                $this->respondAndContinue();
+                response()->respondAndContinue('ok, github');
                 $this->postGithubWebhookAction();
             }
         }
@@ -94,20 +94,7 @@ class Condo
             throw new Exception("Repository not set!");
         }
 
-        return 'ok';
-    }
-
-    public function respondAndContinue()
-    {
-        ob_start();
-        echo "ok";
-        $size = ob_get_length();
-        header("Content-Encoding: none");
-        header("Content-Length: " . $size);
-        header("Connection: close");
-        ob_end_flush();
-        ob_flush();
-        flush();
+        return 'processed';
     }
 
 }
