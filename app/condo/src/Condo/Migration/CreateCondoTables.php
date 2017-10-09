@@ -38,6 +38,16 @@ class CreateCondoTables extends Migration
         $webhooks->text('data');
         $webhooks->varchar('ip');
 
+        $activities = $this->table('activities');
+        $activities->varchar('source');
+        $activities->varchar('identifier');
+        $activities->datetime('created_at');
+        $activities->text('content');
+
+        $activityTags = $this->table('activities');
+        $activityTags->varchar('tag');
+        $activityTags->varchar('value');
+
         $this->save();
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use Condo\Console\FetchCondoMessages;
+use Condo\Console\MakeActivity;
 use Condo\Controller\Condo as CondoController;
 use Condo\Middleware\LogWebhookRequest;
 use Condo\Repository\Provider\Repository;
@@ -10,6 +12,7 @@ use Pckg\Generic\Provider\GenericAssets;
 use Pckg\Generic\Provider\GenericPaths;
 use Pckg\Manager\Middleware\RegisterCoreAssets;
 use Pckg\Manager\Provider\Manager;
+use Pckg\Queue\Service\Cron;
 
 /**
  * Class Condo
@@ -51,6 +54,21 @@ class Condo extends Provider
     {
         return [
             'js/condo.js',
+        ];
+    }
+
+    public function consoles()
+    {
+        return [
+            FetchCondoMessages::class,
+            MakeActivity::class,
+        ];
+    }
+
+    public function jobs()
+    {
+        return [
+            Cron::createJob('queue:run')->everyMinute()->long()->background()->async(),
         ];
     }
 

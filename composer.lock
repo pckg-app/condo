@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "17ba63c888bf06c09061659460356409",
+    "content-hash": "e773dc949eb67114f6272b41ef6299f4",
     "packages": [
         {
             "name": "aferrandini/phpqrcode",
@@ -1225,6 +1225,49 @@
                 "email"
             ],
             "time": "2014-10-30T20:38:12+00:00"
+        },
+        {
+            "name": "mattzuba/php-trello",
+            "version": "dev-default",
+            "source": {
+                "type": "hg",
+                "url": "https://bitbucket.org/mattzuba/php-trello",
+                "reference": "968022169f012fc7da05fd91df3ee9c694964f55"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/mattzuba/php-trello/get/968022169f012fc7da05fd91df3ee9c694964f55.zip",
+                "reference": "968022169f012fc7da05fd91df3ee9c694964f55",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Trello\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MPL-2.0-no-copyleft-exception"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Zuba",
+                    "email": "matt.zuba@gmail.com",
+                    "homepage": "http://www.mattzuba.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP-based Trello API Wrapper",
+            "homepage": "http://mattzuba.bitbucket.org/php-trello/",
+            "keywords": [
+                "api",
+                "trello"
+            ],
+            "time": "2015-01-19T16:24:21+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -5577,6 +5620,7 @@
         "pckg/tempus": 20,
         "dimsemenov/magnific-popup": 20,
         "guzzlehttp/guzzle": 20,
+        "mattzuba/php-trello": 20,
         "codeception/codeception": 20
     },
     "prefer-stable": false,

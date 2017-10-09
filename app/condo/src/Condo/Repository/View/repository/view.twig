@@ -128,69 +128,6 @@
                     <button type="button" class="btn btn-success" @click.prevent="makeRelease()">Make release</button>
                 {% endblock %}
             {% endembed %}
-            <div>
-                <p><b>Creating branches</b></p>
-                <p>Feature branches should be branched from <u>master</u> or <u>develop</u> branch.</p>
-                <p>Bugfix branch may be branched from <u>master</u> or <u>develop</u> branch.</p>
-                <p>Security branches may be branched from <u>master</u> only.</p>
-
-                <p><b>Deploying to staging</b></p>
-                <p>Staging deploys are always <u>automatic</u> via webhook.</p>
-
-                <p><b>Versioning</b></p>
-                <p>majorVersion.minorVersion.patch</p>
-                <p>Each version change must reset trailing versions.</p>
-                <p><u>Feature</u> releases may increase minor or major version.</p>
-                <p><u>Security</u> and <u>bug</u> fix relases may increase <u>patch</u> version.</p>
-                <p><u>Breaking</u> changes must increase <u>major</u> version.</p>
-                <p><u>Deprecated</u> changes must increase <u>minor</u> or <u>major</u> version on adding.</p>
-                <p><u>Deprecated</u> changes must increase <u>major</u> version increase on removal.</p>
-
-                <p><b>Preparing release</b></p>
-                <p>When <u>development</u> branch is stable we can branch it to <u>release-vx.x</u> branch.</p>
-                <p>Possible <u>dependency updates</u> are applied in <u>release</u> branch.</p>
-                <p><u>Release</u> branch is <u>merged</u> into <u>master</u>.</p>
-                <p><u>Master</u> branch is <u>tagged</u>.</p>
-                <p><u>Master</u> is <u>merged</u> into <u>develop</u> branch.</p>
-
-                <p><b>Preparing security release</b></p>
-                <p>When ready, <u>security</u> branch gets branched directly to <u>release</u> branch.</p>
-                <p><u>No dependency updates</u> (except related to security fix) are changed.</p>
-                <p><u>Release</u> branch is <u>merged</u> into <u>master</u>.</p>
-                <p><u>Master</u> branch is <u>tagged</u>.</p>
-                <p><u>Master</u> is <u>merged</u> into <u>develop</u> branch.</p>
-
-                <p><b>Deploying to production</b></p>
-                <p>Production deploys are always <u>manual</u>.</p>
-                <p>All tests, except for security fixes, should pass when deploying to production.</p>
-
-                <p><b>Nightly builds</b></p>
-                <p>Nightly builds are automatically <u>tagged</u> on <u>develop</u> branch.</p>
-
-                <p><b>Branch statuses</b></p>
-                <p>
-                <ul>
-                    <li>New - not synced branches</li>
-                    <li>Syncing - syncing branch</li>
-                    <li>Ahead - ahead of master</li>
-                    <li>Merged - merged into develop</li>
-                    <li>Releasing - merged into release</li>
-                    <li>Released - merged into master</li>
-                    <li>Develop - main develop / staging branch</li>
-                    <li>Release - release branches</li>
-                    <li>Master - master / main / production branch</li>
-                </ul>
-                </p>
-
-                <p><b>Trello commands</b></p>
-                <p>@condo connect $branch - connect trello card with speciffic branch</p>
-                <p>@condo disconnect $branch - disconnect trello card with speciffic branch</p>
-                <p>@condo test - merge branches connected with this card to preprod</p>
-                <p>@condo tested - mark branches connected with this card as tested and prepared to release</p>
-                <p>@condo release - create quick release for branches connected with this card</p>
-                <p>Note: @condo parse errors are visible in condo dashboard. Only connected cards are parsed. Production
-                    deploy are manual - with possible webhooks on release.</p>
-            </div>
         </div>
     </script>
     <script>
