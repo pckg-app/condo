@@ -1658,12 +1658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "db3718b2f73ee508dbe43878aec4d55217882df8"
+                "reference": "ab031db418c2db2aa99173742aba28b1085eee56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/db3718b2f73ee508dbe43878aec4d55217882df8",
-                "reference": "db3718b2f73ee508dbe43878aec4d55217882df8",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/ab031db418c2db2aa99173742aba28b1085eee56",
+                "reference": "ab031db418c2db2aa99173742aba28b1085eee56",
                 "shasum": ""
             },
             "require": {
@@ -1697,7 +1697,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-10-10 11:26:19"
+            "time": "2017-10-10 12:01:18"
         },
         {
             "name": "pckg/generic",
@@ -5288,7 +5288,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:49:52+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/css-selector",
@@ -5341,7 +5341,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:49:52+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/dom-crawler",
@@ -5397,7 +5397,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:49:52+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -5460,7 +5460,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-05T10:20:28+00:00"
+            "time": "2017-10-05 10:20:28"
         },
         {
             "name": "symfony/finder",
@@ -5509,7 +5509,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:49:52+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "theseer/tokenizer",
