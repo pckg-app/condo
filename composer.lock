@@ -1616,12 +1616,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/concept.git",
-                "reference": "a143ba520c1879257a6aec252a86f2003940600e"
+                "reference": "9553f8d0b9a803a890b714f4451729726801ee31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/concept/zipball/a143ba520c1879257a6aec252a86f2003940600e",
-                "reference": "a143ba520c1879257a6aec252a86f2003940600e",
+                "url": "https://api.github.com/repos/pckg/concept/zipball/9553f8d0b9a803a890b714f4451729726801ee31",
+                "reference": "9553f8d0b9a803a890b714f4451729726801ee31",
                 "shasum": ""
             },
             "type": "library",
@@ -1642,7 +1642,7 @@
             ],
             "description": "Simple php concepts",
             "homepage": "https://github.com/pckg/concept",
-            "time": "2017-09-25 11:24:27"
+            "time": "2017-10-10 17:17:49"
         },
         {
             "name": "pckg/database",
@@ -1650,21 +1650,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/database.git",
-                "reference": "6d030e0259be87bb594817326f603f29fdcf22a6"
+                "reference": "53f6e4d9a6ab4f6542a047ce92d8b1164af1f562"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/database/zipball/6d030e0259be87bb594817326f603f29fdcf22a6",
-                "reference": "6d030e0259be87bb594817326f603f29fdcf22a6",
+                "url": "https://api.github.com/repos/pckg/database/zipball/53f6e4d9a6ab4f6542a047ce92d8b1164af1f562",
+                "reference": "53f6e4d9a6ab4f6542a047ce92d8b1164af1f562",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "1.*",
                 "maximebf/debugbar": "1.*",
                 "pckg/auth": "dev-master",
+                "pckg/cache": "dev-master",
                 "pckg/collection": "dev-master",
                 "pckg/concept": "dev-master",
-                "pckg/framework": "dev-master"
+                "pckg/locale": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -1685,7 +1686,7 @@
             ],
             "description": "Just another php / orm / pdo implementation for simple and advanced data management",
             "homepage": "https://github.com/pckg/database",
-            "time": "2017-10-10 16:55:52"
+            "time": "2017-10-10 17:23:03"
         },
         {
             "name": "pckg/framework",
@@ -3293,12 +3294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "8f3ebf7e6f7f5634f088c49f97f2708ca218aae4"
+                "reference": "41c9a132b8f96797e750ccb50d1064aab5b16d93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/8f3ebf7e6f7f5634f088c49f97f2708ca218aae4",
-                "reference": "8f3ebf7e6f7f5634f088c49f97f2708ca218aae4",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/41c9a132b8f96797e750ccb50d1064aab5b16d93",
+                "reference": "41c9a132b8f96797e750ccb50d1064aab5b16d93",
                 "shasum": ""
             },
             "require": {
@@ -3354,7 +3355,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2017-10-05 12:34:03"
+            "time": "2017-10-10 17:27:52"
         },
         {
             "name": "symfony/yaml",
