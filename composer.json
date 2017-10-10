@@ -38,7 +38,9 @@
     "icepay/api": "^0.0.1",
     "gentle/bitbucket-api": "^0.8.2",
     "guzzlehttp/guzzle": "^6.2@dev",
-    "mattzuba/php-trello": "dev-default"
+    "mattzuba/php-trello": "dev-default",
+    "pckg/cache": "dev-master",
+    "pckg/locale": "dev-master"
   },
   "require-dev": {
     "codeception/codeception": "dev-master"

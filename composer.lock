@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e773dc949eb67114f6272b41ef6299f4",
+    "content-hash": "5cd98fe5dea415a41a86127172caeb9a",
     "packages": [
         {
             "name": "aferrandini/phpqrcode",
@@ -1509,6 +1509,40 @@
             "time": "2017-09-26 13:28:58"
         },
         {
+            "name": "pckg/cache",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pckg/cache.git",
+                "reference": "ebc8c6b57b8527b84ba596b359ebd8da0e3763dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pckg/cache/zipball/ebc8c6b57b8527b84ba596b359ebd8da0e3763dd",
+                "reference": "ebc8c6b57b8527b84ba596b359ebd8da0e3763dd",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pckg": "src\\"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bojan Rajh",
+                    "email": "schtr4jh@schtr4jh.net"
+                }
+            ],
+            "description": "PHP cache",
+            "homepage": "https://github.com/pckg/cache",
+            "time": "2017-10-10 16:42:38"
+        },
+        {
             "name": "pckg/charts",
             "version": "dev-master",
             "source": {
@@ -1874,6 +1908,40 @@
             "description": "Import, validate and map imported data from common file formats",
             "homepage": "https://github.com/pckg/import",
             "time": "2017-03-21 13:36:48"
+        },
+        {
+            "name": "pckg/locale",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pckg/locale.git",
+                "reference": "30af19bf926c3366af9b2911ed1bae49630d595e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pckg/locale/zipball/30af19bf926c3366af9b2911ed1bae49630d595e",
+                "reference": "30af19bf926c3366af9b2911ed1bae49630d595e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pckg": "src\\"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bojan Rajh",
+                    "email": "schtr4jh@schtr4jh.net"
+                }
+            ],
+            "description": "PHP locale",
+            "homepage": "https://github.com/pckg/locale",
+            "time": "2017-10-10 16:51:54"
         },
         {
             "name": "pckg/mail",
@@ -5621,6 +5689,8 @@
         "dimsemenov/magnific-popup": 20,
         "guzzlehttp/guzzle": 20,
         "mattzuba/php-trello": 20,
+        "pckg/cache": 20,
+        "pckg/locale": 20,
         "codeception/codeception": 20
     },
     "prefer-stable": false,
