@@ -10,6 +10,8 @@ class Deploy extends AbstractParser
         /**
          * Trigger deploy procedure for activity.
          */
+
+        $this->activity->respond('Deploy is currently not supported ... yet. Triggering deploy webhooks.');
     }
 
 }

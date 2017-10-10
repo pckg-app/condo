@@ -57,8 +57,8 @@ class Bitbucket
         $pullRequests->setCredentials($this->getAuth());
 
         $pullRequest = $pullRequests->create($this->vendor, $this->package, [
-            'title'       => $request->post('title'),
-            'comment'     => $request->post('comment') . $request->post('reviewers'),
+            'title'       => $request->post('title', null),
+            'comment'     => $request->post('comment', null) . $request->post('reviewers', null),
             'source'      => [
                 'branch' => [
                     'name' => $branch->branch,
@@ -66,7 +66,7 @@ class Bitbucket
             ],
             'destination' => [
                 'branch' => [
-                    'name' => 'develop',
+                    'name' => 'master',
                 ],
             ],
         ]);

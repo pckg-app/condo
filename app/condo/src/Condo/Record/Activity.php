@@ -8,7 +8,10 @@ use Condo\Activity\Parser\Release;
 use Condo\Activity\Parser\Test;
 use Condo\Activity\Parser\Tested;
 use Condo\Entity\Activities;
+use Condo\Entity\ActivityTags;
+use Condo\Trello\Service\Trello;
 use Pckg\Database\Record;
+use Throwable;
 
 class Activity extends Record
 {
@@ -40,11 +43,25 @@ class Activity extends Record
                     return;
                 }
 
-                $parser->parse($line);
+                try {
+                    $parser->parse($line);
+                } catch (Throwable $e) {
+                    dd(exception($e), $parser);
+                }
             });
         });
 
         return $this;
+    }
+
+    public function respond($text)
+    {
+        $activityCardTag = (new ActivityTags())->where('activity_id', $this->id)
+                                               ->where('tag', 'trello:card')
+                                               ->oneOrFail();
+
+        $trello = (new Trello())->getTrello();
+        $trello->post('/cards/' . $activityCardTag->value . '/actions/comments', ['text' => $text]);
     }
 
 }

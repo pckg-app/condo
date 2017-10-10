@@ -19,7 +19,7 @@ abstract class AbstractParser implements ParserInterface
 
     public function canParse($line)
     {
-        return strpos($line, $this->keyword . ' ') == 0;
+        return $line === $this->keyword || strpos($line, $this->keyword . ' ') === 0;
     }
 
     public function getParams($line, $number = null, $offset = 0)

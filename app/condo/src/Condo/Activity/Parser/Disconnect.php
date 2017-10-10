@@ -1,6 +1,6 @@
 <?php namespace Condo\Activity\Parser;
 
-use Condo\Record\ActivityTag;
+use Condo\Entity\ActivityTags;
 
 class Disconnect extends AbstractParser
 {
@@ -11,14 +11,12 @@ class Disconnect extends AbstractParser
     {
         $branch = $this->getParams($line, 1);
 
-        $tag = ActivityTag::gets([
-                                     'tag'   => 'branch',
-                                     'value' => $branch,
-                                 ]);
+        (new ActivityTags())->whereArr([
+                                           'tag'   => 'branch',
+                                           'value' => $branch,
+                                       ])->delete();
 
-        if ($tag) {
-            $tag->delete();
-        }
+        $this->activity->respond('Card disconnected');
     }
 
 }

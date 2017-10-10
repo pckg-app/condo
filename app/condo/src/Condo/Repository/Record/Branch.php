@@ -1,9 +1,11 @@
 <?php namespace Condo\Repository\Record;
 
 use Condo\Repository\Entity\Branches;
+use Condo\Repository\Service\Repository\Handler\Bitbucket;
 use GuzzleHttp\Client;
 use Pckg\Collection;
 use Pckg\Database\Record;
+use Pckg\Framework\Request;
 use Symfony\Component\Yaml\Yaml;
 
 class Branch extends Record
@@ -16,6 +18,33 @@ class Branch extends Record
         $handler = $this->repository->getRepositoryHandler();
 
         return $handler->createPullRequest();
+    }
+
+    /**
+     * @return mixed|Bitbucket
+     */
+    public function getOriginHandler()
+    {
+        return $this->repository->getRepositoryHandler();
+    }
+
+    public function createPullRequest()
+    {
+        $origin = $this->getOriginHandler();
+
+        $origin->createPullRequest($this, new Request([
+                                                          'title'   => 'PR ' . $this->title,
+                                                          'comment' => 'TBD - https://condo.foobar.si',
+                                                      ]));
+    }
+
+    public function testBranch()
+    {
+        /**
+         * @T00D00 - implement test procedure
+         */
+
+        return $this;
     }
 
     public function prepareRepository()

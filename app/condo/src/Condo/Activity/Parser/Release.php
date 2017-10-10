@@ -10,6 +10,8 @@ class Release extends AbstractParser
         /**
          * Trigger release procedure for activity.
          */
+
+        $this->activity->respond('Nut fully functional, but merged to release.');
     }
 
 }

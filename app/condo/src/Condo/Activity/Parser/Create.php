@@ -2,14 +2,16 @@
 
 use Condo\Record\ActivityTag;
 
-class Connect extends AbstractParser
+class Create extends AbstractParser
 {
 
-    protected $keyword = 'connect';
+    protected $keyword = 'create';
 
     public function parse($line)
     {
         $branch = $this->getParams($line, 1);
+
+        // in which repository should we create branch?
 
         ActivityTag::getOrCreate([
                                      'activity_id' => $this->activity->id,
@@ -17,7 +19,7 @@ class Connect extends AbstractParser
                                      'value'       => $branch,
                                  ]);
 
-        $this->activity->respond('Card successfully connected');
+        $this->activity->respond('Branch created (fetch from origin) and card successfully connected');
     }
 
 }

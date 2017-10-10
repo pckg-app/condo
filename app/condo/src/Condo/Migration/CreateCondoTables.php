@@ -43,10 +43,17 @@ class CreateCondoTables extends Migration
         $activities->varchar('identifier');
         $activities->datetime('created_at');
         $activities->text('content');
+        $activities->integer('repository_id');
 
-        $activityTags = $this->table('activities');
+        $activityTags = $this->table('activity_tags');
+        $activityTags->integer('activity_id');
         $activityTags->varchar('tag');
         $activityTags->varchar('value');
+
+        $repositoryTags = $this->table('repository_tags');
+        $repositoryTags->integer('repository_id');
+        $repositoryTags->varchar('tag');
+        $repositoryTags->varchar('value');
 
         $this->save();
     }

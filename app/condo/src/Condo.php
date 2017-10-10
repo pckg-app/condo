@@ -12,6 +12,7 @@ use Pckg\Generic\Provider\GenericAssets;
 use Pckg\Generic\Provider\GenericPaths;
 use Pckg\Manager\Middleware\RegisterCoreAssets;
 use Pckg\Manager\Provider\Manager;
+use Pckg\Queue\Console\RunQueue;
 use Pckg\Queue\Service\Cron;
 
 /**
@@ -62,6 +63,7 @@ class Condo extends Provider
         return [
             FetchCondoMessages::class,
             MakeActivity::class,
+            RunQueue::class,
         ];
     }
 
