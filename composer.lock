@@ -1650,17 +1650,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/database.git",
-                "reference": "ea7e7083087c564867ccbe7e463cb93f8abdd46d"
+                "reference": "6d030e0259be87bb594817326f603f29fdcf22a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/database/zipball/ea7e7083087c564867ccbe7e463cb93f8abdd46d",
-                "reference": "ea7e7083087c564867ccbe7e463cb93f8abdd46d",
+                "url": "https://api.github.com/repos/pckg/database/zipball/6d030e0259be87bb594817326f603f29fdcf22a6",
+                "reference": "6d030e0259be87bb594817326f603f29fdcf22a6",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "1.*",
                 "maximebf/debugbar": "1.*",
+                "pckg/auth": "dev-master",
                 "pckg/collection": "dev-master",
                 "pckg/concept": "dev-master",
                 "pckg/framework": "dev-master"
@@ -1684,7 +1685,7 @@
             ],
             "description": "Just another php / orm / pdo implementation for simple and advanced data management",
             "homepage": "https://github.com/pckg/database",
-            "time": "2017-10-09 23:29:38"
+            "time": "2017-10-10 16:55:52"
         },
         {
             "name": "pckg/framework",
@@ -1692,20 +1693,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "ab031db418c2db2aa99173742aba28b1085eee56"
+                "reference": "b15902277e2aca2b96203a381f44f9a33a8e2fed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/ab031db418c2db2aa99173742aba28b1085eee56",
-                "reference": "ab031db418c2db2aa99173742aba28b1085eee56",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/b15902277e2aca2b96203a381f44f9a33a8e2fed",
+                "reference": "b15902277e2aca2b96203a381f44f9a33a8e2fed",
                 "shasum": ""
             },
             "require": {
                 "filp/whoops": "2.*",
                 "maximebf/debugbar": "1.*",
+                "pckg/cache": "dev-master",
                 "pckg/concept": "dev-master",
                 "pckg/database": "dev-master",
                 "pckg/htmlbuilder": "dev-master",
+                "pckg/locale": "dev-master",
                 "pckg/manager": "dev-master",
                 "rollbar/rollbar": "0.*",
                 "twig/twig": "1.25.*"
@@ -1731,7 +1734,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-10-10 12:01:18"
+            "time": "2017-10-10 16:54:10"
         },
         {
             "name": "pckg/generic",
@@ -1739,12 +1742,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/generic.git",
-                "reference": "c63cf37a67d2fe8aa0fbdcdad19933b3f1a3ebb5"
+                "reference": "a9dcdcd6dddd7d93fe0035a514b1d81293d68598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/generic/zipball/c63cf37a67d2fe8aa0fbdcdad19933b3f1a3ebb5",
-                "reference": "c63cf37a67d2fe8aa0fbdcdad19933b3f1a3ebb5",
+                "url": "https://api.github.com/repos/pckg/generic/zipball/a9dcdcd6dddd7d93fe0035a514b1d81293d68598",
+                "reference": "a9dcdcd6dddd7d93fe0035a514b1d81293d68598",
                 "shasum": ""
             },
             "require": {
@@ -1770,7 +1773,7 @@
             ],
             "description": "Building admin interface and generic frontend made simple",
             "homepage": "https://github.com/pckg/generic",
-            "time": "2017-10-06 14:49:05"
+            "time": "2017-10-10 16:56:02"
         },
         {
             "name": "pckg/helpers-js",
@@ -1988,12 +1991,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/manager.git",
-                "reference": "4d77fd66095bd6309722c29e1bb7b025d5eb7e3f"
+                "reference": "33dfb3e67e253e609b484a38480a2600288944ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/manager/zipball/4d77fd66095bd6309722c29e1bb7b025d5eb7e3f",
-                "reference": "4d77fd66095bd6309722c29e1bb7b025d5eb7e3f",
+                "url": "https://api.github.com/repos/pckg/manager/zipball/33dfb3e67e253e609b484a38480a2600288944ea",
+                "reference": "33dfb3e67e253e609b484a38480a2600288944ea",
                 "shasum": ""
             },
             "require": {
@@ -2017,7 +2020,7 @@
             ],
             "description": "Asset management, meta / seo, locale, vue.js and everything else that projects need to manage",
             "homepage": "https://github.com/pckg/manager",
-            "time": "2017-09-18 10:30:46"
+            "time": "2017-10-10 16:56:16"
         },
         {
             "name": "pckg/migrator",
@@ -2182,12 +2185,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/translator.git",
-                "reference": "f405ee95b7faace75e0ec458602e3c414ee0b4c8"
+                "reference": "cd9b88d854dabcaffbd6076aa3a281deedae9a03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/translator/zipball/f405ee95b7faace75e0ec458602e3c414ee0b4c8",
-                "reference": "f405ee95b7faace75e0ec458602e3c414ee0b4c8",
+                "url": "https://api.github.com/repos/pckg/translator/zipball/cd9b88d854dabcaffbd6076aa3a281deedae9a03",
+                "reference": "cd9b88d854dabcaffbd6076aa3a281deedae9a03",
                 "shasum": ""
             },
             "type": "library",
@@ -2210,7 +2213,7 @@
             ],
             "description": "Translation service",
             "homepage": "https://github.com/pckg/translator",
-            "time": "2017-08-23 11:53:15"
+            "time": "2017-10-10 16:56:29"
         },
         {
             "name": "pclzip/pclzip",
