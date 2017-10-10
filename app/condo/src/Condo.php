@@ -70,6 +70,7 @@ class Condo extends Provider
     public function jobs()
     {
         return [
+            Cron::createJob('condo:fetch')->everyMinute(),
             Cron::createJob('queue:run')->everyMinute()->long()->background()->async(),
         ];
     }
