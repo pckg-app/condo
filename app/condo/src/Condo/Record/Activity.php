@@ -4,6 +4,7 @@ use Condo\Activity\Parser\Connect;
 use Condo\Activity\Parser\Deploy;
 use Condo\Activity\Parser\Disconnect;
 use Condo\Activity\Parser\ParserInterface;
+use Condo\Activity\Parser\Preprod;
 use Condo\Activity\Parser\Release;
 use Condo\Activity\Parser\Test;
 use Condo\Activity\Parser\Tested;
@@ -11,7 +12,6 @@ use Condo\Entity\Activities;
 use Condo\Entity\ActivityTags;
 use Condo\Trello\Service\Trello;
 use Pckg\Database\Record;
-use Throwable;
 
 class Activity extends Record
 {
@@ -31,6 +31,7 @@ class Activity extends Record
                                Disconnect::class,
                                Test::class,
                                Tested::class,
+                               Preprod::class,
                                Release::class,
                                Deploy::class,
                            ])->map(function($parser): ParserInterface {
@@ -43,11 +44,7 @@ class Activity extends Record
                     return;
                 }
 
-                try {
-                    $parser->parse($line);
-                } catch (Throwable $e) {
-                    dd(exception($e), $parser);
-                }
+                $parser->parse($line);
             });
         });
 
