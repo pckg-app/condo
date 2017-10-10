@@ -1616,19 +1616,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/concept.git",
-                "reference": "9553f8d0b9a803a890b714f4451729726801ee31"
+                "reference": "1771dbd5b22f410c61913c3961bfac8616965774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/concept/zipball/9553f8d0b9a803a890b714f4451729726801ee31",
-                "reference": "9553f8d0b9a803a890b714f4451729726801ee31",
+                "url": "https://api.github.com/repos/pckg/concept/zipball/1771dbd5b22f410c61913c3961bfac8616965774",
+                "reference": "1771dbd5b22f410c61913c3961bfac8616965774",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Pckg": "src\\"
-                }
+                },
+                "files": [
+                    "src/Pckg/Concept/Helper/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1642,7 +1645,7 @@
             ],
             "description": "Simple php concepts",
             "homepage": "https://github.com/pckg/concept",
-            "time": "2017-10-10 17:17:49"
+            "time": "2017-10-10 17:37:41"
         },
         {
             "name": "pckg/database",
@@ -1694,12 +1697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pckg/framework.git",
-                "reference": "b15902277e2aca2b96203a381f44f9a33a8e2fed"
+                "reference": "87d17e6c890bcf97bc9424d1f2cfcd3a47927f63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pckg/framework/zipball/b15902277e2aca2b96203a381f44f9a33a8e2fed",
-                "reference": "b15902277e2aca2b96203a381f44f9a33a8e2fed",
+                "url": "https://api.github.com/repos/pckg/framework/zipball/87d17e6c890bcf97bc9424d1f2cfcd3a47927f63",
+                "reference": "87d17e6c890bcf97bc9424d1f2cfcd3a47927f63",
                 "shasum": ""
             },
             "require": {
@@ -1735,7 +1738,7 @@
             ],
             "description": "Fully featured lightweight php framework with multilingual support, twig templating engine, and tons of other features.",
             "homepage": "https://github.com/pckg/framework",
-            "time": "2017-10-10 16:54:10"
+            "time": "2017-10-10 17:38:00"
         },
         {
             "name": "pckg/generic",
