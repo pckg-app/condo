@@ -81,12 +81,16 @@ class Branch extends Record
                 'git pull --ff',
             ];
 
-            foreach ($commands as $command) {
-                $output = null;
-                $ret = null;
-                $c = 'cd ' . $dir . ' && ' . $command;
-                exec($c, $output, $ret);
-                d($c, $output, $ret);
+            try {
+                foreach ($commands as $command) {
+                    $output = null;
+                    $ret = null;
+                    $c = 'cd ' . $dir . ' && ' . $command;
+                    exec($c, $output, $ret);
+                    d($c, $output, $ret);
+                }
+            } catch (\Throwable $e) {
+                dd(exception($e));
             }
         }
     }
