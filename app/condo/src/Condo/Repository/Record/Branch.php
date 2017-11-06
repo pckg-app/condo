@@ -69,9 +69,10 @@ class Branch extends Record
 
         if (!is_dir($dir . 'app')) {
             $commands = [
-                'git init .',
-                'git remote add origin ' . $url,
-                'git fetch --all',
+                'git clone ' . $url . ' .',
+                //'git init .',
+                //'git remote add origin ' . $url,
+                //'git fetch --all',
                 'git checkout master',
                 'git branch --set-upstream-to=origin/master master',
                 'git pull --ff',
@@ -82,8 +83,10 @@ class Branch extends Record
 
             foreach ($commands as $command) {
                 $output = null;
-                $return = null;
-                exec('cd ' . $dir . ' && ' . $command, $output, $return);
+                $ret = null;
+                $c = 'cd ' . $dir . ' && ' . $command;
+                exec($c, $output, $ret);
+                d($c, $output, $ret);
             }
         }
     }
