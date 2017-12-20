@@ -231,7 +231,9 @@ class Branch extends Record
          */
         $repositoryHandler = $this->repository->getRepositoryHandler();
 
-        return $repositoryHandler->getFileContent('.pckg/pckg.yaml', $this->branch);
+        $content = $repositoryHandler->getFileContent('.pckg/pckg.yaml', $this->branch);
+
+        return Yaml::parse($content);
 
         $this->prepareRepository();
         $dir = $this->getTmpDir();
