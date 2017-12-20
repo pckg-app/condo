@@ -226,6 +226,13 @@ class Branch extends Record
 
     public function readDotPckg()
     {
+        /**
+         * New implementation: call bitbucket or github api. :)
+         */
+        $repositoryHandler = $this->repository->getRepositoryHandler();
+
+        return $repositoryHandler->getFileContent('.pckg/pckg.yaml', $this->branch);
+
         $this->prepareRepository();
         $dir = $this->getTmpDir();
         $commands = [

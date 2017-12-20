@@ -40,7 +40,9 @@
     "guzzlehttp/guzzle": "^6.2@dev",
     "mattzuba/php-trello": "dev-default",
     "pckg/cache": "dev-master",
-    "pckg/locale": "dev-master"
+    "pckg/locale": "dev-master",
+    "knplabs/github-api": "^2.6@dev",
+    "php-http/guzzle6-adapter": "^1.2@dev"
   },
   "require-dev": {
     "codeception/codeception": "dev-master"

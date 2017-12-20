@@ -3,27 +3,16 @@
 use Bitbucket\API\Authentication\Basic;
 use Bitbucket\API\Repositories\PullRequests;
 use Bitbucket\API\Repositories\Repository;
+use Bitbucket\API\Repositories\Src;
 use Condo\Repository\Record\Branch;
 use Exception;
 use Pckg\Framework\Request;
+use Throwable;
 
-class Bitbucket
+class Bitbucket extends AbstractHandler
 {
 
-    protected $url;
-
-    protected $vendor;
-
-    protected $package;
-
-    public function __construct($url)
-    {
-        $this->url = $url;
-
-        $sep = 'bitbucket.org/';
-        list($this->vendor, $this->package) = explode('/', substr($this->url, strpos($this->url, $sep) + strlen($sep)));
-        $this->package = str_replace('.git', '', $this->package);
-    }
+    protected $domain = 'bitbucket.org';
 
     public function doSomething()
     {
@@ -73,6 +62,23 @@ class Bitbucket
         $response = json_decode($pullRequest->getContent());
 
         return $response;
+    }
+
+    /**
+     * @param        $file
+     * @param string $ref
+     *
+     * @return null|string
+     * @throws Throwable
+     */
+    public function getFileContent($file, $ref = 'master')
+    {
+        $src = (new Src());
+        $src->setCredentials($this->getAuth());
+
+        $content = $src->raw($this->vendor, $this->package, $ref, $file);
+
+        return $content->getContent();
     }
 
     private function getAuth()
