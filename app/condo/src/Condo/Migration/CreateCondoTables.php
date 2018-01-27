@@ -35,7 +35,7 @@ class CreateCondoTables extends Migration
 
         $webhooks = $this->table('webhooks');
         $webhooks->datetime('created_at');
-        $webhooks->text('data');
+        $webhooks->longtext('data');
         $webhooks->varchar('ip');
 
         $activities = $this->table('activities');
