@@ -186,23 +186,7 @@ class Branch extends Record
          *  Condo, Center, Derive, Hardcopy, Impero
          */
         if ($this->deploy) {
-            if ($this->branch == 'master') {
-                /**
-                 * Master for impero, center and condo triggers deploy on schtr4jh.net.
-                 * Master for derive doesn't trigger deploy.
-                 */
-                $this->triggerDeployWebhook();
-            } else if (in_array($this->branch, ['preprod', 'develop'])) {
-                /**
-                 * Preprod and develop for derive triggers successful deploy on gonparty.eu.
-                 * Preprod for impero, center and condo doesn't exist.
-                 */
-                $this->triggerDeployWebhook();
-            } else {
-                /**
-                 * Other branches are currently not supported.
-                 */
-            }
+            $this->triggerDeployWebhook();
         }
     }
 
