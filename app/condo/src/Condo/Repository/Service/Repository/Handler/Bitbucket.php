@@ -3,11 +3,10 @@
 use Bitbucket\API\Authentication\Basic;
 use Bitbucket\API\Repositories\PullRequests;
 use Bitbucket\API\Repositories\Repository;
-use Bitbucket\API\Repositories\Src;
+use Bitbucket\Client;
 use Condo\Repository\Record\Branch;
 use Exception;
 use Pckg\Framework\Request;
-use Throwable;
 
 class Bitbucket extends AbstractHandler
 {
@@ -68,17 +67,19 @@ class Bitbucket extends AbstractHandler
      * @param        $file
      * @param string $ref
      *
-     * @return null|string
-     * @throws Throwable
+     * @return string
+     * @throws \Http\Client\Exception
+     * @throws \RuntimeException
      */
     public function getFileContent($file, $ref = 'master')
     {
-        $src = (new Src());
-        $src->setCredentials($this->getAuth());
+        $client = new Client();
+        $client->authenticate(Client::AUTH_HTTP_PASSWORD, config('git.bitbucket.auth.user'),
+                              config('git.bitbucket.auth.pass'));
 
-        $content = $src->raw($this->vendor, $this->package, $ref, $file);
+        $path = '2.0/repositories/' . $this->vendor . '/' . $this->package . '/src/' . $ref . '/' . $file;
 
-        return $content->getContent();
+        return $client->getHttpClient()->get($path)->getBody()->getContents();
     }
 
     private function getAuth()

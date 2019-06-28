@@ -45,7 +45,9 @@
     "knplabs/github-api": "^2.6@dev",
     "snapappointments/bootstrap-select": "dev-master",
     "rollbar/rollbar": "dev-master",
-    "maximebf/debugbar": "^1.15@dev"
+    "maximebf/debugbar": "^1.15@dev",
+    "bitbucket/client": "^1.1@dev",
+    "php-http/guzzle6-adapter": "^1.1"
   },
   "require-dev": {
     "codeception/codeception": "dev-master"
