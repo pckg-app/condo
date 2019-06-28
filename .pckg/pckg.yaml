@@ -37,6 +37,7 @@ deploy:
   - yarn install --production --silent
 
 migrate:
+
   # import translations
   #- php console $app translator:import
 
