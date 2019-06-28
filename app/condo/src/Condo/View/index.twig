@@ -2,9 +2,8 @@
 
 {% block content %}
     <h1>condo.foobar.si</h1>
-    <p>What would be your response if I tell you that you can trigger deploy and release procedures over trello? Think
-        again. :)</p>
-    <p>Condo is service which makes releasing git packages from bitbucket and github simple. ;-)</p>
+    <p>Condo provides a way to present Trello cards on a timeline and simplify on-going and future task management.</p>
+    <p>Additionally it integrates with Trello, Slack, Bitbucket and Github for even better experience.</p>
 
     <div class="row">
         <div class="col-md-4">
@@ -86,7 +85,431 @@
         <h3>GIT</h3>
         <ul>
             <li>Add condo webhook: https://condo.foobar.si/webhook</li>
-            <li>That's it, condo will automatically call </li>
+            <li>That's it, condo will automatically call</li>
         </ul>
     </div>
+
+    <div class="container">
+
+        <h4>Task sources</h4>
+        <ul>
+            <li>
+                Trello
+                <ul>
+                    <li>Access to linked boards</li>
+                    <li>Watches linked cards</li>
+                </ul>
+            </li>
+            <li>
+                Bitbucket
+                <ul>
+                    <li>Access to linked repositories</li>
+                    <li>Watches linked issues</li>
+                </ul>
+            </li>
+            <li>
+                Github
+                <ul>
+                    <li>Access to linked repositories</li>
+                    <li>Watches linked issues</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Timeline</h3>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>We want to build timeline for all Trello tasks. Bitbucket and Github issues should have corresponding
+                    Trello
+                    tasks.</p>
+                <p>We do not know which user will work for how long on this task, so we need to collect that. We will
+                    measure
+                    that in minutes. Also, there can be many users working on each card.</p>
+                <p>Each card may depend on another card by putting depending card in checkbox list.</p>
+                <p>Card deadline date may be defined in Trello.</p>
+                <p>Weights (priority, difficulty and gain) and human resources (people) are defined as YAML at the end
+                    of Trello
+                    card description after *condo* tag.</p>
+                <pre>
+            *condo*
+            priority: 3
+            difficulty: 7
+            gain: 2
+            people:
+              bojan: 120
+              nemanja: 120
+              tadej: 120
+            branch: f-12-bla-foobar-branch
+        </pre>
+
+                <p>Timeline is split into 2 parts. First part shows work in progress tasks. Second timeline shows coming
+                    up tasks.</p>
+                <span class="label label-success">first task</span>
+                <span class="label label-info">second task</span>
+                <span class="label label-warning">third task</span>
+                |
+                <span class="label label-success">first task</span>
+                <span class="label label-warning">second task</span>
+                <span class="label label-info">third task</span>
+
+                <p>Since there could be tasks running concurrently we additionally split each task by user.</p>
+
+
+                Bojan: <span class="label label-success">first really long task</span>
+                <span class="label label-info">second task</span>
+                <span class="label label-warning">third long task</span>
+                |
+                <span class="label label-success">first task</span>
+                <span class="label label-warning">task</span>
+                <span class="label label-info">third task</span><br/>
+
+                Nemanja: <span class="label label-success">task</span>
+                <span class="label label-info">second task time</span>
+                <span class="label label-warning">third task that takes</span>
+                |
+                <span class="label label-success">first task</span>
+                <span class="label label-warning">second task some time</span>
+                <span class="label label-info">third task</span>
+            </div>
+        </div>
+
+        <h3>Coming up</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Tasks that were linked, but were not started - no branch, pull request or proper label.</p>
+                <p>Start action will move task to work in progress section.</p>
+                <p>Any task can be started - dev, planning, maintenance, design or anything else. Tasks are not git
+                    dependent.</p>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <td>Task / Issue</td>
+                        <td>Type</td>
+                        <td>Duration</td>
+                        <td>Status</td>
+                        <td>Rating</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><i class="fab fa-trello"></i> Task bla foobar</td>
+                        <td>Feature</td>
+                        <td>4 days</td>
+                        <td><span class="label label-danger">blocking</span></td>
+                        <td>10 * 10 * 10 = 1000</td><!-- the most urgent, most-->
+                        <td><a href="#">start</a></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fab fa-trello"></i> Lorem ipsum dolor sit</td>
+                        <td>Bug</td>
+                        <td>2 hours</td>
+                        <td><span class="label label-danger">blocking</span></td>
+                        <td>10 * 8 * 9 = 720</td>
+                        <td><a href="#">start</a></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fab fa-trello"></i> Ipsum dolor sit task</td>
+                        <td>Improvement</td>
+                        <td>12 hours</td>
+                        <td><span class="label label-danger">blocking</span></td>
+                        <td>5 * 5 * 5 = 125</td>
+                        <td><a href="#">start</a></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fab fa-trello"></i> Ipsum dolor sit task</td>
+                        <td>Task</td>
+                        <td>2 weeks</td>
+                        <td><span class="label label-danger">blocking</span></td>
+                        <td>1 * 1 * 1 = 1</td>
+                        <td><a href="#">start</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3>Work in progress</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Tasks that have connected branches, or have labels "in progress", "review" or "done", but are not
+                    released.</p>
+                <p>Creating branch will create branch from Trello card url and item type - f-34-some-card. <b>In which
+                        repository? Do we need project?</b></p>
+                <p>Creating pull request will create pull request on Bitbucket / Github from linked branch.</p>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <td>Task / Issue</td>
+                        <td>Project</td>
+                        <td><i class="fa fa-code-branch"></i> Branch</td>
+                        <td><i class="fa fa-code-merge"></i> Pull request</td>
+                        <td>Status</td>
+                        <td><i class="fa fa-users"></i> Collaborators</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Comms
+                        </td>
+                        <td>
+                            f-12-some-branch
+                        </td>
+                        <td>
+                            <i class="fab fa-github"></i> Pull request name<br/>
+                            <i class="fab fa-bitbucket"></i> Another request name<br/>
+                        </td>
+                        <td>
+                            <span class="label label-danger">todo</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Comms Hub
+                        </td>
+                        <td>
+                            <i class="fa fa-branch"></i> <a href="#">create</a>
+                        </td>
+                        <td>
+                            <a href="#">create</a>
+                        </td>
+                        <td>
+                            <span class="label label-danger">todo</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Comms Docs
+                        </td>
+                        <td>
+                            b-43-anothe-branch
+                        </td>
+                        <td>
+                            <a href="#">create</a>
+                        </td>
+                        <td>
+                            <span class="label label-default">in progress</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Comms Docs
+                        </td>
+                        <td>
+                            b-43-anothe-branch
+                        </td>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> [WIP] Update something
+                        </td>
+                        <td>
+                            <span class="label label-warning">under review</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Comms Status
+                        </td>
+                        <td>
+                            h-23-change-sth
+                        </td>
+                        <td>
+                            <a href="#">create</a>
+                        </td>
+                        <td>
+                            <span class="label label-info">merged</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-github"></i> #1234 - Some task name
+                        </td>
+                        <td>
+                            Medium
+                        </td>
+                        <td>
+                            <a href="#">create</a>
+                        </td>
+                        <td>
+                            <a href="#">create</a>
+                        </td>
+                        <td>
+                            <span class="label label-success">released</span>
+                        </td>
+                        <td>
+                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-code"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-ellipsis-h"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3>Current</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Completing (sub)task will mark Trello (sub)card (or subtask) as done.</p>
+                <p>Postponing task will show next task. Postponing subtask will show next subtask.</p>
+                <h4>#1234 - Some task name</h4>
+                <i class="fab fa-fw fa-bitbucket"></i> Bitbucket issue #123<br/>
+                <i class="fab fa-fw fa-trello"></i> Trello card #313<br/>
+                <i class="fa fa-fw fa-code-branch"></i> f-45-some-branch-name<br/>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success"><i class="fa fa-check"></i> complete</button>
+                    <button type="button" class="btn btn-info"><i class="fa fa-clock"></i> postpone</button>
+                </div>
+
+                <h5>#4343 - Some sub task name</h5>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success"><i class="fa fa-check"></i> complete</button>
+                    <button type="button" class="btn btn-info"><i class="fa fa-clock"></i> postpone</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Releases</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Releases should be mainly manually scheduled - like plan to release weekly release every tuesday at
+                    12:00, daily release every day at 14:00, security and hotfixes immediately.</p>
+                <p>Releases are created manually or by selecting merge branch.</p>
+                <p>Every branch merge to master branch presents a commit.</p>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <td>Task</td>
+                        <td>Pull request</td>
+                        <td>Branch</td>
+                        <td>Version</td>
+                        <td>Date</td>
+                        <td>Status</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> Some task name<br/>
+                            <i class="fab fa-trello"></i> Another task name
+                        </td>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> Pull request name<br/>
+                            <i class="fab fa-bitbucket"></i> Merged request name<br/>
+                            <i class="fab fa-bitbucket"></i> Another merged request name
+                        </td>
+                        <td>r-some-release</td>
+                        <td>v1.2.0 (minor)</td>
+                        <td></td>
+                        <td><span class="label label-default">created</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> Some task name<br/>
+                            <i class="fab fa-trello"></i> Foobar name<br/>
+                            <i class="fab fa-trello"></i> Some task name that is long<br/>
+                            <i class="fab fa-trello"></i> Task name<br/>
+                            <i class="fab fa-trello"></i> Another task name
+                        </td>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> Pull request name<br/>
+                        </td>
+                        <td>r-another-lengthy-release</td>
+                        <td>v1.1.0 (minor)</td>
+                        <td></td>
+                        <td><span class="label label-warning">preparing</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> Some task name<br/>
+                            <i class="fab fa-trello"></i> Another task name
+                        </td>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> Pull request name
+                        </td>
+                        <td>r-some-release</td>
+                        <td>v1.0.1 (patch)</td>
+                        <td></td>
+                        <td><span class="label label-info">ready</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fab fa-trello"></i> Some task name<br/>
+                        </td>
+                        <td>
+                            <i class="fab fa-bitbucket"></i> Pull request name
+                        </td>
+                        <td>r-some-release</td>
+                        <td>v1.0.0 (major)</td>
+                        <td></td>
+                        <td><span class="label label-success">released</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

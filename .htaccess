@@ -6,7 +6,7 @@ RewriteEngine On
 
 # private rewrite
 RewriteCond %{REQUEST_FILENAME} \.(js|css|less|jpg|jpe?g|png|gif|eot|otf|svg|woff|woff2|ttf|pdf|gz|ico)$ [NC]
-RewriteCond %{REQUEST_FILENAME} -f [NC]
+RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
 # www rewrite
