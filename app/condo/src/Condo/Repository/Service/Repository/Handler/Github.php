@@ -40,6 +40,7 @@ class Github extends AbstractHandler
 
     private function makeAuth(Client $client)
     {
+        $client->authenticate(config('git.github.auth.token'), null, Client::AUTH_HTTP_TOKEN);
         $client->authenticate(config('git.github.auth.user'), config('git.github.auth.pass'));
     }
 
