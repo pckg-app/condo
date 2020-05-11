@@ -12,7 +12,7 @@
     "dropzone": "^5.2.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "sortablejs": "^1.7.0",
-    "tinymce": "^4.7.3",
+    "tinymce": "^4.9.10",
     "vue": "^2.5.9",
     "vue-router": "^3.0.3",
     "vuedraggable": "^2.15.0",
