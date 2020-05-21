@@ -3,6 +3,7 @@
 use Condo\Repository\Entity\Branches;
 use Condo\Repository\Entity\Repositories;
 use Condo\Repository\Record\Branch;
+use Condo\Service\Webhook;
 use Exception;
 
 class Condo
@@ -25,24 +26,7 @@ class Condo
 
             $branch = $change['new']['name']; // master, preprod, develop, BR-asd, bla-bla, foo-bar, ...
 
-            /**
-             * This is first call that is made after git push, we will trigger all actions, wooow. :)
-             * First, check for repository in our database.
-             */
-            $repository = (new Repositories())->where('repository', $repositoryUrl)->oneOr(function() use (
-                $repositoryUrl
-            ) {
-                throw new Exception('Repository ' . $repositoryUrl . ' not found in Condo');
-            });
-
-            /**  Merge feature, bugfix and hotfix branch to preprod.
-             *      If successful, deploy to preprod
-             */
-            (new Branches())->where('repository_id', $repository->id)
-                            ->where('branch', $branch)
-                            ->oneAndIf(function(Branch $branch) {
-                                $branch->webhookActivated();
-                            });
+            (new Webhook())->processNext($repositoryUrl, $branch);
         }
     }
 
@@ -55,22 +39,15 @@ class Condo
             return;
         }
 
-        /**
-         * This is first call that is made after git push, we will trigger all actions, wooow. :)
-         * First, check for repository in our database.
-         */
-        $repository = (new Repositories())->where('repository', $repositoryUrl)->oneOr(function() use ($repositoryUrl) {
-            throw new Exception('Repository ' . $repositoryUrl . ' not found in Condo');
-        });
+        (new Webhook())->processNext($repositoryUrl, $branch);
+    }
 
-        /**  Merge feature, bugfix and hotfix branch to preprod.
-         *      If successful, deploy to preprod
-         */
-        (new Branches())->where('repository_id', $repository->id)
-                        ->where('branch', $branch)
-                        ->oneAndIf(function(Branch $branch) {
-                            $branch->webhookActivated();
-                        });
+    public function postBuildWebhookAction()
+    {
+        $repositoryUrl = post('repository');
+        $branch = post('branch');
+
+        (new Webhook())->processNext($repositoryUrl, $branch);
     }
 
     public function postWebhookAction()
@@ -79,7 +56,11 @@ class Condo
          * @T00D00 - run this in job so we can return response immediately
          */
         $repositoryUrl = post('repository.links.html.href', null);
-        if ($repositoryUrl) {
+        $buildId = post('PCKG_BUILD_ID');
+        if ($buildId) {
+            response()->respondAndContinue('ok, build');
+            $this->postBuildWebhookAction();
+        } else if ($repositoryUrl) {
             response()->respondAndContinue('ok, bitbucket');
             $this->postBitbucketWebhookAction();
         } else {

@@ -195,17 +195,41 @@ class Branch extends Record
         (new Collection(explode("\n", $this->deploy)))
             ->trim()
             ->each(function($url) {
+                $vars = post('PCKG_BUILD_ID') ? ['$pckgBuildId' => post('PCKG_BUILD_ID')] : [];
                 $client = new Client();
+                $pckg = $this->readDotPckg();
+                $pckg['docker'] = $this->readDocker($pckg);
                 $client->post($url, [
                     'connect_timeout' => 15,
                     'json'            => [
                         'event'      => 'deploy',
                         'repository' => $this->repository->repository,
                         'branch'     => $this->branch,
-                        'pckg'       => $this->readDotPckg(),
+                        'vars'       => $vars,
+                        'pckg'       => $pckg,
                     ],
                 ]);
             });
+    }
+
+    public function readDocker($pckg)
+    {
+        $entrypoints = $pckg['checkout']['swarm']['entrypoint'] ?? null;
+        if (!$entrypoints) {
+            return [];
+        }
+        if (!is_array($entrypoints)) {
+            $entrypoints = [$entrypoints];
+        }
+        $repositoryHandler = $this->repository->getRepositoryHandler();
+        $files = [];
+        foreach ($entrypoints as $entrypoint) {
+            $content = $repositoryHandler->getFileContent($entrypoint, $this->branch);
+            $parsed = Yaml::parse($content);
+            $files[$entrypoint] = $parsed;
+        }
+
+        return $files;
     }
 
     public function readDotPckg()
