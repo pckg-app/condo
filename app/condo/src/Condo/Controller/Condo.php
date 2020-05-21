@@ -58,6 +58,7 @@ class Condo
         $repositoryUrl = post('repository.links.html.href', null);
         $buildId = post('PCKG_BUILD_ID');
         if ($buildId) {
+            $repositoryUrl = post('repository');
             response()->respondAndContinue('ok, build');
             $this->postBuildWebhookAction();
         } else if ($repositoryUrl) {
