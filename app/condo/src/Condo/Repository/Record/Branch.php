@@ -225,8 +225,8 @@ class Branch extends Record
         $files = [];
         foreach ($entrypoints as $entrypoint) {
             $content = $repositoryHandler->getFileContent($entrypoint, $this->branch);
-            $parsed = Yaml::parse($content);
-            $files[$entrypoint] = $parsed;
+            //$parsed = Yaml::parse($content);
+            $files[$entrypoint] = $content;
         }
 
         return $files;
