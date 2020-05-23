@@ -35,10 +35,11 @@ class Gitlab extends AbstractHandler
             ->authenticate(config('git.gitlab.auth.token'), \Gitlab\Client::AUTH_URL_TOKEN);
         $project = $client->projects->all(['search' => $this->package, 'owned' => true])[0] ?? null;
         if (!$project) {
+            throw new \Exception('No project in Gitlab');
             return null;
         }
 
-        return base64_decode($client->repositories()->getFile($project->id, $file, $ref)['content']);
+        return base64_decode($client->repositories()->getFile($project['id'], $file, $ref)['content']);
     }
 
 }
