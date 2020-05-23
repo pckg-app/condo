@@ -47,7 +47,8 @@
     "rollbar/rollbar": "dev-master",
     "maximebf/debugbar": "^1.15@dev",
     "bitbucket/client": "^1.1@dev",
-    "php-http/guzzle6-adapter": "^1.1"
+    "php-http/guzzle6-adapter": "^1.1",
+    "m4tthumphrey/php-gitlab-api": "^9.17@dev"
   },
   "require-dev": {
     "codeception/codeception": "dev-master"
