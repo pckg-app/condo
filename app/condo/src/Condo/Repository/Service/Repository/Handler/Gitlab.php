@@ -33,7 +33,7 @@ class Gitlab extends AbstractHandler
     {
         $client = \Gitlab\Client::create('https://gitlab.com')
             ->authenticate(config('git.gitlab.auth.token'), \Gitlab\Client::AUTH_URL_TOKEN);
-        $project = $client->projects->all(['search' => $this->package])[0] ?? null;
+        $project = $client->projects->all(['search' => $this->package, 'owned' => true])[0] ?? null;
         if (!$project) {
             return null;
         }
