@@ -2,6 +2,7 @@
 
 use Condo\Repository\Entity\Branches;
 use Condo\Repository\Service\Repository\Handler\Bitbucket;
+use Condo\Repository\Service\Repository\Handler\Local;
 use GuzzleHttp\Client;
 use Pckg\Collection;
 use Pckg\Database\Record;
@@ -198,7 +199,11 @@ class Branch extends Record
                 $vars = post('PCKG_BUILD_ID') ? ['$pckgBuildId' => post('PCKG_BUILD_ID')] : [];
                 $client = new Client();
                 $pckg = $this->readDotPckg();
-                $pckg['docker'] = $this->readDocker($pckg);
+                try {
+                    $pckg['docker'] = $this->readDocker($pckg);
+                } catch (\Throwable $e) {
+                    error_log(exception($e));
+                }
                 $client->post($url, [
                     'connect_timeout' => 15,
                     'json'            => [
@@ -212,21 +217,103 @@ class Branch extends Record
             });
     }
 
+    public function readDeployVolumes($pckg)
+    {
+        $volumes = $pckg['checkout']['volumes'] ?? [];
+        $keys = [];
+
+        $nodes = [
+            'one' => [
+                'node.labels.has-volume--${VOLUME_CERTBOT_KEY} == true',
+                'node.labels.has-volume--${VOLUME_CERTBOT_WWW_KEY} == true',
+                'node.labels.has-volume--${VOLUME_HAPROXY_KEY} == true',
+                'node.labels.has-volume--${VOLUME_QUEUE_KEY} == true',
+                'node.labels.has-volume--${VOLUME_CACHE_KEY} == true',
+                'node.labels.has-volume--${VOLUME_DATABASE_KEY} == true',
+                'node.labels.has-volume--${VOLUME_ATTACHMENTS} == true',
+                'node.labels.has-volume--${VOLUME_STORAGE} == true',
+                'node.labels.has-volume--${VOLUME_DKIM} == true',
+            ],
+            'zero' => [
+                'node.labels.has-volume--${VOLUME_ATTACHMENTS} == true',
+                'node.labels.has-volume--${VOLUME_STORAGE} == true',
+                'node.labels.has-volume--${VOLUME_DKIM} == true',
+            ],
+        ];
+
+        foreach ($pckg['checkout']['swarms'] as $swarmName => $swarmConfig) {
+            $swarmVolumes = $swarmConfig['volumes'] ?? [];
+            foreach ($swarmVolumes as $volume) {
+                //$volumes[$volume]['services'][] = $volume['name'];
+                /**
+                 * Some volumes are constrainted:
+                 * - "node.labels.has-service--${SERVICE_NAME} == yes"
+                 * So we need to add those tags first.
+                 * We know which tags our nodes have, we need to fetch them.
+                 * When fetched, we need to check that directories actually exist.
+                 */
+             }
+        }
+
+        return $volumes;
+    }
+
     public function readDocker($pckg)
     {
         $entrypoints = $pckg['checkout']['swarm']['entrypoint'] ?? null;
-        if (!$entrypoints) {
-            return [];
+        $swarms = $pckg['checkout']['swarms'] ?? [];
+        $repositoryHandler = $this->repository ? $this->repository->getRepositoryHandler() : new Local();
+
+        /**
+         * Single entrypoint.
+         */
+        if ($entrypoints) {
+            if (!is_array($entrypoints)) {
+                $entrypoints = [$entrypoints];
+            }
+            $files = [];
+            foreach ($entrypoints as $entrypoint) {
+                $content = $repositoryHandler->getFileContent($entrypoint, $this->branch);
+                $files[$entrypoint] = $content;
+            }
         }
-        if (!is_array($entrypoints)) {
-            $entrypoints = [$entrypoints];
+
+        /**
+         * Multiple swarms.
+         */
+        foreach ($swarms as $swarm) {
+            $entrypoints = $swarm['entrypoint'] ?? null;
+            if (!is_array($entrypoints)) {
+                $entrypoints = [$entrypoints];
+            }
+            foreach ($entrypoints as $entrypoint) {
+                $content = $repositoryHandler->getFileContent($entrypoint, $this->branch);
+                $files[$entrypoint] = $content;
+            }
         }
-        $repositoryHandler = $this->repository->getRepositoryHandler();
-        $files = [];
-        foreach ($entrypoints as $entrypoint) {
-            $content = $repositoryHandler->getFileContent($entrypoint, $this->branch);
-            //$parsed = Yaml::parse($content);
-            $files[$entrypoint] = $content;
+
+        /**
+         * Now read env_files?
+         * And other mountpoints?
+         */
+        foreach ($files as $file => $content) {
+            $parsed = Yaml::parse($content);
+            foreach ($parsed['services'] ?? [] as $service => $serviceConfig) {
+                $envFiles = $serviceConfig['env_file'] ?? null;
+                if (!$envFiles) {
+                    continue;
+                }
+                if (!is_array($envFiles)) {
+                    $envFiles = [$envFiles];
+                }
+                foreach ($envFiles as $envFile) {
+                    if (strpos($envFile, './') !== 0) {
+                        continue; // this should throw an error?
+                    }
+                    $envFileContent = $repositoryHandler->getFileContent(substr($envFile, 2) . '.impero', $this->branch);
+                    $files[$envFile] = $envFileContent;
+                }
+            }
         }
 
         return $files;

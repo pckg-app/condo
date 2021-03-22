@@ -1,5 +1,5 @@
 {
-  "name": "pckga-pp/condo",
+  "name": "pckg-app/condo",
   "description": "Directory structure, required files and suggestions for /pckg",
   "homepage": "https://github.com/pckg-app/condo",
   "license": "MIT",
@@ -10,48 +10,42 @@
     }
   ],
   "require": {
-    "pckg/framework": "dev-master",
-    "pckg/migrator": "dev-master",
-    "pckg/queue": "dev-master",
+    "pckg-app/frontend": "dev-master",
     "pckg/mail": "dev-master",
-    "pckg/translator": "dev-master",
-    "pckg/auth": "dev-master",
-    "pckg/generic": "dev-BR-vueify-frontend",
-    "pckg/charts": "dev-master",
-    "pckg/helpers-js": "dev-master",
-    "pckg/helpers-less": "dev-master",
-    "pckg/import": "dev-master",
-    "pckg/payment": "dev-master",
-    "pckg/tempus": "dev-master",
-    "pckg/cache": "dev-master",
-    "pckg/locale": "dev-master",
-    "pckg/manager": "dev-master",
+    "pckg/generic": "dev-master",
     "jonnyw/php-phantomjs": "4.*",
-    "nesbot/carbon": "1.*",
     "twbs/bootstrap": "3.4.*",
     "components/jquery": "2.*",
     "fortawesome/font-awesome": "4.*",
-    "bootstrap-select/bootstrap-select": "1.*",
-    "kraksoft/colorbox": "1.*",
-    "dimsemenov/magnific-popup": "dev-master",
     "robrichards/xmlseclibs": "^2.0",
-    "aferrandini/phpqrcode": "^1.0",
     "intervention/image": "^2.3",
-    "league/csv": "^8.1",
-    "icepay/api": "^0.0.1",
-    "gentle/bitbucket-api": "^0.8.2",
+    "gentle/bitbucket-api": "^1.1.2",
     "guzzlehttp/guzzle": "6.*",
     "mattzuba/php-trello": "dev-default",
-    "knplabs/github-api": "^2.6@dev",
-    "snapappointments/bootstrap-select": "dev-master",
-    "rollbar/rollbar": "dev-master",
-    "maximebf/debugbar": "^1.15@dev",
-    "bitbucket/client": "^1.1@dev",
-    "php-http/guzzle6-adapter": "^1.1",
-    "m4tthumphrey/php-gitlab-api": "^9.17@dev"
+    "knplabs/github-api": "^v2.19.1",
+    "bitbucket/client": "^v2.1.5",
+    "php-http/guzzle6-adapter": "^v2.0.2",
+    "m4tthumphrey/php-gitlab-api": "^11.3.0",
+    "ext-json": "*"
   },
   "require-dev": {
-    "codeception/codeception": "dev-master"
+    "pckg-app/frontend-dev": "dev-master"
   },
-  "minimum-stability": "dev"
+  "scripts": {
+    "test": [
+      "true || vendor/bin/phpunit --help --stop-on-defect",
+      "true || vendor/bin/phpcloc cloc app/center/",
+      "vendor/bin/phpstan analyse app/center/ --level=1",
+      "vendor/bin/phpcs --extensions=php --warning-severity=8 --error-severity=1 --standard=PSR12 --parallel=2 -p app/center/",
+      "vendor/bin/codecept run"
+    ],
+    "autofix": [
+      "vendor/bin/phpcs --extensions=php --report-diff=phpcs.diff --warning-severity=8 --error-severity=1 --standard=PSR12 --parallel=2 -p app/center/"
+    ],
+    "autopatch": [
+      "patch -p0 -ui phpcs.diff && rm phpcs.diff"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

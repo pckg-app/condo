@@ -10,7 +10,6 @@ use Pckg\Framework\Provider\Framework;
 use Pckg\Framework\Provider\Frontend;
 use Pckg\Generic\Provider\GenericAssets;
 use Pckg\Generic\Provider\GenericPaths;
-use Pckg\Manager\Middleware\RegisterCoreAssets;
 use Pckg\Manager\Provider\Manager;
 use Pckg\Queue\Console\RunQueue;
 use Pckg\Queue\Service\Cron;
@@ -47,7 +46,7 @@ class Condo extends Provider
     public function middlewares()
     {
         return [
-            RegisterCoreAssets::class,
+            //RegisterCoreAssets::class,
         ];
     }
 
@@ -62,6 +61,7 @@ class Condo extends Provider
     {
         return [
             FetchCondoMessages::class,
+            \Condo\Console\ReadDeploy::class,
             MakeActivity::class,
             RunQueue::class,
         ];

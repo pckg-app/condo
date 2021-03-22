@@ -1,6 +1,7 @@
 <?php namespace Condo\Repository\Console;
 
 use Condo\Repository\Entity\Branches;
+use Condo\Repository\Record\Branch;
 use Pckg\Framework\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 

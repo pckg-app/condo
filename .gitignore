@@ -10,7 +10,6 @@ www/img
 www/cache
 www/fonts
 www/media
-www/storage
 
 # GIT
 !**/.gitkeep
@@ -24,6 +23,7 @@ logs/**
 # ENV
 app/*/config/env.php
 config/env.php
+/.env*
 
 # DEV -.-
 sublime

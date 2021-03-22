@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+
+  web:
+    image: schtr4jh/pckg:apache-fpm-alpine
+    env_file: ./.env.web.docker
+    ports:
+      - "8051:443"
+      #- "80:80"
+    depends_on:
+      - queue-server
+      - cache-server
+      - database
+      - bridge
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - public
+      - condo-backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  database:
+    image: mysql:5
+    env_file: ./.env.database.docker
+    volumes:
+      - condodbstorage:/var/lib/mysql
+    command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci", "--skip-character-set-client-handshake" ]
+    networks:
+      - condo-backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  cache-server:
+    image: redis:5-alpine
+    env_file: ./.env.redis.docker
+    command: ["sh", "-c", "redis-server --requirepass $${REDIS_PASS}"]
+    networks:
+      - condo-backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  queue-server:
+    image: rabbitmq:3-alpine
+    env_file: ./.env.rabbit.docker
+    networks:
+      - condo-backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  default: {}
+  condo-backend: {}
+  public:
+    external: true
+  bridge:
+    external: true
+    name: bridge
+
+volumes:
+  condodbstorage: {}

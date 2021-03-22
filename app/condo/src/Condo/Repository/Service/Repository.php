@@ -4,6 +4,7 @@ use Condo\Repository\Service\Repository\Handler\AbstractHandler;
 use Condo\Repository\Service\Repository\Handler\Bitbucket;
 use Condo\Repository\Service\Repository\Handler\Github;
 use Condo\Repository\Service\Repository\Handler\Gitlab;
+use Condo\Repository\Service\Repository\Handler\Local;
 
 class Repository
 {
@@ -28,6 +29,8 @@ class Repository
             return new Github($this->url);
         } elseif (strpos($this->url, 'gitlab')) {
             return new Gitlab($this->url);
+        } else {
+            return new Local();
         }
 
         return null;
