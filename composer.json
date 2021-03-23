@@ -21,7 +21,6 @@
     "intervention/image": "^2.3",
     "gentle/bitbucket-api": "^1.1.2",
     "guzzlehttp/guzzle": "6.*",
-    "mattzuba/php-trello": "dev-default",
     "knplabs/github-api": "^v2.19.1",
     "bitbucket/client": "^v2.1.5",
     "php-http/guzzle6-adapter": "^v2.0.2",

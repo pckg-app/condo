@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5d4265761678535d4631fbfcf2b17d9",
+    "content-hash": "a22aa8b70805ff06865f20f4709c2ec2",
     "packages": [
         {
             "name": "assetic/framework",
@@ -2079,55 +2079,6 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.7.4"
             },
             "time": "2020-10-01T13:52:52+00:00"
-        },
-        {
-            "name": "mattzuba/php-trello",
-            "version": "dev-default",
-            "source": {
-                "type": "hg",
-                "url": "https://bitbucket.org/mattzuba/php-trello",
-                "reference": "968022169f012fc7da05fd91df3ee9c694964f55"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://bitbucket.org/mattzuba/php-trello/get/968022169f012fc7da05fd91df3ee9c694964f55.zip",
-                "reference": "968022169f012fc7da05fd91df3ee9c694964f55",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Trello\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MPL-2.0-no-copyleft-exception"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Zuba",
-                    "email": "matt.zuba@gmail.com",
-                    "homepage": "http://www.mattzuba.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP-based Trello API Wrapper",
-            "homepage": "http://mattzuba.bitbucket.org/php-trello/",
-            "keywords": [
-                "api",
-                "trello"
-            ],
-            "support": {
-                "email": "matt.zuba@gmail.com",
-                "issues": "https://bitbucket.org/mattzuba/php-trello/issues",
-                "source": "https://bitbucket.org/mattzuba/php-trello/src"
-            },
-            "time": "2015-01-19T15:24:21+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -10330,7 +10281,6 @@
         "pckg-app/frontend": 20,
         "pckg/mail": 20,
         "pckg/generic": 20,
-        "mattzuba/php-trello": 20,
         "pckg-app/frontend-dev": 20
     },
     "prefer-stable": true,
